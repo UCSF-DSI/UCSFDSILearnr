@@ -57,6 +57,78 @@ This will create a new folder in the location where you chose to save your new p
 
 *Lesson Objective: Apply vector and matrix operations.*
 
+Sometimes, we want to apply a mathematical operation to a sequence of values. For example, take a look at the code below:
+
+```{r exercise_02a, exercise=TRUE}
+# assign grades to students
+grade_albert <- 80
+grade_enrico <- 90
+grade_ian <- 85
+grade_michelle <- 85
+grade_namari <- 90
+
+# apply 5 point curve
+grade_albert <- grade_albert + 5
+grade_enrico <- grade_enrico + 5
+grade_ian <- grade_ian + 5
+grade_michelle <- grade_michelle + 5
+grade_namari <- grade_namari + 5
+
+# display grades
+print(grade_albert)
+print(grade_enrico)
+print(grade_ian)
+print(grade_michelle)
+print(grade_namari)
+```
+
+You may have noticed that this code is repetitive,. There are different objects for different students, and we are applying the same mathematical operation (add 5) to all the objects. Is there a more efficient way to do this? The short answer is yes!
+
+### Vectors
+
+**Vectors** are sequences of values. Let's revisit the example from above, but this time, we'll use a vector.
+
+```{r exercise_02b, exercise=TRUE}
+# assign grades to students
+grades <- c(80, 90, 85, 85, 90)
+
+# apply 5 point curve
+grades <- grades + 5
+
+# display grades
+print(grades)
+```
+
+As you see, we were able to store all the grades in a single object as a vector, and when we applied the curve, all the grades within the vector were adjusted in a single operation.
+
+There are two types of vectors:
+
+-   Atomic Vectors
+
+-   Lists
+
+#### Atomic Vectors
+
+**Atomic vectors** are vectors that only contain a single data type. In our example above, all the values within the `grades` vector were integers. However, you can have other types of values in vectors as well. Take a look at the examples below:
+
+```{r exercise_02c, exercise=TRUE}
+# this vector contains logical (boolean) values
+logical_vector <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+
+# this vector contains strings of characters
+character_vector <- c("Albert", "Enrico", "Ian", "Michelle", "Namari")
+```
+
+#### Lists
+
+Unlike atomic vectors, lists can contain multiple types of values. Take a look at the example below:
+
+```{r exercise_02d, exercise=TRUE}
+x <- list("1", 2, "three", 4, "five")
+```
+
+In the example,
+
 ## Data Frames
 
 *Lesson Objective: Load and manipulate data in data frames.*
