@@ -117,37 +117,10 @@ At this point, the Console is the only RStudio feature you should know about. As
 -   RStudio is an integrated development environment (IDE) used to interact with R.
 -   Inside the RStudio Console, you can enter R commands.
 
-+------------------------------------------+--------------------------------------------------------------------------------------+
-| **Vocabulary**                           | **Definition**                                                                       |
-+------------------------------------------+--------------------------------------------------------------------------------------+
-| R                                        | A programming language used frequently for data science and statistical applications |
-+------------------------------------------+--------------------------------------------------------------------------------------+
-| Programming Language                     | A human-interpretable way to provide specific instructions to a computer.            |
-+------------------------------------------+--------------------------------------------------------------------------------------+
-| RStudio                                  | An integrated development environment (IDE) used to interact with R                  |
-+------------------------------------------+--------------------------------------------------------------------------------------+
-| Integrated Development Environment (IDE) | An application that supports computer programming tasks                              |
-+------------------------------------------+--------------------------------------------------------------------------------------+
-| Console                                  | A space in RStudio where you can enter R commands                                    |
-+------------------------------------------+--------------------------------------------------------------------------------------+
-
-```{r echo=FALSE}
-Vocabulary <- c(
-  "R", 
-  "Programming Lanuage", 
-  "RStudio", 
-  "Integrated Development Environment (IDE)", 
-  "Console"
-)
-Definition <- c(
-  "A programming language used frequently for data science and statistical applications", 
-  "A human-interpretable way to provide specific instructions to a computer.", 
-  "An integrated development environment (IDE) used to interact with R", 
-  "An application that supports computer programming tasks", 
-  "A space in RStudio where you can enter R commands"
-)
-
-vocab_table <- as.data.frame(cbind(Vocabulary, Definition))
-
-kable(vocab_table, format='markdown')
-```
+| Vocabulary                               | Definition                                                                            |
+|:-----------------------------------------|:--------------------------------------------------------------------------------------|
+| R                                        | A programming language used frequently for data science and statistical applications. |
+| Programming Language                     | A programming language used frequently for data science and statistical applications. |
+| RStudio                                  | An integrated development environment (IDE) used to interact with R.                  |
+| Integrated Development Environment (IDE) | An application that supports computer programming tasks.                              |
+| Console                                  | A space in RStudio where you can enter R commands.                                    |

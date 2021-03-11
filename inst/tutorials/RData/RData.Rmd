@@ -17,6 +17,7 @@ It's great that you can create computer programs in R, why what should we make t
 
 By the end of the course module, you will be able to:
 
+-   Set up new RStudio projects.
 -   Apply vector and matrix operations.
 -   Load and manipulate data in data frames.
 
@@ -44,7 +45,7 @@ All materials and topics in this course are subject to periodical changes and up
 
 *Lesson Objective: Set up an R Project.*
 
-Up to this point in the R for Everyone series, you haven't needed to set up an R Project. However, now that we'll start working with data, it's a good idea to get into a habit to organize your projects.
+Up to this point in the R for Everyone series, you haven't needed to set up an RStudio Project. However, now that we'll start working with data, it's a good idea to get into a habit to organize your projects.
 
 By using **RStudio projects**, you can ensure all the data, scripts, and documentation for your projects are in a single place.
 
@@ -64,17 +65,14 @@ This will create a new folder in the location where you chose to save your new p
 
 **Key Concepts**
 
--   Many people describe **computer programming** (often called **coding**) as creating executable instructions for computers.
+-   By using **RStudio projects**, you can ensure all the data, scripts, and documentation for your projects are in a single place.
 
-```{r echo=FALSE}
-Vocabulary <- c(
-  "Computer Programming (Coding)"
-)
-Definition <- c(
-  "Creating executable instructions for computers."
-)
-
-vocab_table <- as.data.frame(cbind(Vocabulary, Definition))
-
-kable(vocab_table, format='markdown')
-```
++-------------------+------------------------------------------------------------------------------------+
+| Vocabulary        | Definition                                                                         |
++===================+====================================================================================+
+| RStudio Projects  | A RStudio feature to organize all files and settings associated with each project. |
++-------------------+------------------------------------------------------------------------------------+
+|                   |                                                                                    |
++-------------------+------------------------------------------------------------------------------------+
+|                   |                                                                                    |
++-------------------+------------------------------------------------------------------------------------+

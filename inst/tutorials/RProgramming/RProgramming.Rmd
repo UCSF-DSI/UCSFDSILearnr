@@ -630,7 +630,7 @@ R comes with hundreds of functions, and you can see a list of them by entering `
 
 To install a package select *Tools* -\> *Install Packages...* from the top menu. Then type in the name of the package you would like to install, and click *Install*. For this example, you can install the `swirl` package, which is a package that contains R programming tutorials.
 
-![](images/swirl.png){width="100%"}
+![](images/swirl.png){width="71%"}
 
 Once you have installed a package, you can load it by using the `library` command. The code below loads the `swirl` package.
 
@@ -723,55 +723,48 @@ question("What is -14 degree Fahrenheit in Celsius?",
 -   **Control structures**, such as **conditions** and **loops**, control the flow of your computer program.
 -   **Functions** are blocks of code that you can **call** or **define** to complete specific tasks.
 
-```{r echo=FALSE}
-Vocabulary <- c(
-  "Computer Programming (Coding)", 
-  "R Script", 
-  "Source Editor",
-  "Comments",
-  "Objects (Variables)",
-  "Assignment operator (`<-`)",
-  "snake_case",
-  "Environment Pane",
-  "Control Structures",
-  "Condition",
-  "Boolean",
-  "If...Else Statements",
-  "Loops",
-  "While Loop",
-  "For Loop",
-  "Functions",
-  "Call",
-  "Packages",
-  "Define",
-  "Arguments",
-  "Return"
-)
-Definition <- c(
-  "Creating executable instructions for computers.", 
-  "An executable R program that can contain multiple R commands.", 
-  "A pane in RStudio where you can edit R Scripts and other types of files.",
-  "Annotations that you include in your code to make it more interpretable.",
-  "Stores values for later use.",
-  "Used to assign values to objects.",
-  "A way of naming objects that uses all lowercase characters and separates words using underscore(_).",
-  "A pane on the top right of RStudio that contains a list of your current objects and their values.",
-  "Control the order in which R runs your code.",
-  "Indicates something that must be true in order for some code to be executed",
-  "Indicates logical TRUE or FALSE.",
-  "A control structure in R that runs code base on conditions",
-  "Code that repeats or iterates",
-  "A type of loop that iterates based on a condition",
-  "A type of loop that iterates through a vector",
-  "A block of code the completes a specific task on a set of inputs",
-  "Use or invoke a function",
-  "Collection of functions that you can install",
-  "Create a new function",
-  "Inputs into a function",
-  "The resulting value of a function. By default, this will be the last expression in the function."
-)
-
-vocab_table <- as.data.frame(cbind(Vocabulary, Definition))
-
-kable(vocab_table, format='markdown')
-```
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Vocabulary                    | Definition                                                                                           |
++:==============================+:=====================================================================================================+
+| Computer Programming (Coding) | Creating executable instructions for computers.                                                      |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| R Script                      | An executable R program that can contain multiple R commands.                                        |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Source Editor                 | A pane in RStudio where you can edit R Scripts and other types of files.                             |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Comments                      | Annotations that you include in your code to make it more interpretable.                             |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Objects (Variables)           | Stores values for later use.                                                                         |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Assignment operator (`<-`)    | Used to assign values to objects.                                                                    |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| snake_case                    | A way of naming objects that uses all lowercase characters and separates words using underscore(\_). |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Environment Pane              | A pane on the top right of RStudio that contains a list of your current objects and their values.    |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Control Structures            | Control the order in which R runs your code.                                                         |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Condition                     | Indicates something that must be true in order for some code to be executed.                         |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Boolean                       | Indicates logical TRUE or FALSE.                                                                     |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| If...Else Statements          | A control structure in R that runs code base on conditions.                                          |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Loops                         | Code that repeats or iterates.                                                                       |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| While Loop                    | A type of loop that iterates based on a condition.                                                   |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| For Loop                      | A type of loop that iterates through a vector.                                                       |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Functions                     | A block of code the completes a specific task on a set of inputs.                                    |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Call                          | Use or invoke a function.                                                                            |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Packages                      | Collection of functions that you can install.                                                        |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Define                        | Create a new function.                                                                               |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Arguments                     | Inputs into a function.                                                                              |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Return                        | The resulting value of a function. By default, this will be the last expression in the function.     |
++-------------------------------+------------------------------------------------------------------------------------------------------+
