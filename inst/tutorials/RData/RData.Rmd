@@ -1,0 +1,75 @@
+---
+title: "R for Everyone - Part 3: Data"
+description: "Learn Data Concepts with R!"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Course Overview
+It's great that you can create computer programs in R, why what should we make those computer programs do? R is used frequently for data science and statistical applications, and in this module, you'll get a basic understanding of how data scientists use R. 
+
+By the end of the course module, you will be able to:
+
+- Apply vector and matrix operations.
+- Load and manipulate data in data frames.
+
+### Prerequisites
+Prior to completing this course module, you should have complete the other modules in the R for Everyone Series:
+
+- R for Everyone - Part 1: The Basics
+- R for Everyone - Part 2: Computer Programming
+
+You will need to have both R and RStudio installed, and you will be viewing this course through RStudio.
+
+### Course Authors
+- [Karla Lindquist, PhD](http://profiles.ucsf.edu/karla.lindquist) is the Scientific Lead for the Data Science Initiative in the UCSF Library.
+- Albert Lee is an Instructional Designer and Analyst for the Data Science Initiative at the UCSF Library.
+
+### Creative Commons
+All materials and topics in this course are subject to periodical changes and updates by the Instructor. This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+
+![](images/creative_commons.png)
+
+## Setting Up RStudio Projects
+*Lesson Objective: Set up an R Project.*
+
+Up to this point in the R for Everyone series, you haven't needed to set up an R Project. However, now that we'll start working with data, it's a good idea to get into a habit to organize your projects. 
+
+By using **RStudio projects**, you can ensure all the data, scripts, and documentation for your projects are in a single place.
+
+To create a new project, go to *File -> New Project...* from the top menu. In the window the appears, select *New Directory -> New Project*. Then give your project a name and choose where to save your project.
+![](images/new_directory.png){width=100%}
+
+This will create a new folder in the location where you chose to save your new project. In this folder, you should now see a *.Rproj* file. You can use this *.Rproj* file as a shortcut to opening your project in RStudio.
+
+
+
+## Vectors and Matrices
+*Lesson Objective: Apply vector and matrix operations.*
+
+## Data Frames
+*Lesson Objective: Load and manipulate data in data frames.*
+
+## Summary
+**Key Concepts**
+
+- Many people describe **computer programming** (often called **coding**) as creating executable instructions for computers.
+
+```{r echo=FALSE}
+Vocabulary <- c(
+  "Computer Programming (Coding)"
+)
+Definition <- c(
+  "Creating executable instructions for computers."
+)
+
+vocab_table <- as.data.frame(cbind(Vocabulary, Definition))
+
+kable(vocab_table, format='markdown')
+```
