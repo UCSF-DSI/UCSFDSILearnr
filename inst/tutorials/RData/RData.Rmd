@@ -127,7 +127,7 @@ Unlike atomic vectors, lists can contain multiple types of values. Take a look a
 x <- list("1", 2, "three", 4, "five")
 ```
 
-In the example,
+In the example, we included both string and numeric values in vector `x`.
 
 ## Data Frames
 
