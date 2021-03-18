@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Course Overview
 
-It's great that you can create computer programs in R, why what should we make those computer programs do? R is used frequently for data science and statistical applications, and in this module, you'll get a basic understanding of how data scientists use R.
+It's great that you can create computer programs in R, but what should we make those computer programs do? R is used frequently for data science and statistical applications, and in this module, you'll be introduced to how R is used to work with data.
 
 By the end of the course module, you will be able to:
 
@@ -45,13 +45,17 @@ All materials and topics in this course are subject to periodical changes and up
 
 *Lesson Objective: Set up an R Project.*
 
-Up to this point in the R for Everyone series, you haven't needed to set up an RStudio Project. However, now that we'll start working with data, it's a good idea to get into a habit to organize your projects.
+Up to this point in the R for Everyone series, you haven't needed to set up an RStudio Project. However, now that we'll start working with data, it's a good idea to get into the habit of using RStudio Projects to organize your work..
 
-By using **RStudio projects**, you can ensure all the data, scripts, and documentation for your projects are in a single place.
+By using **RStudio Projects**, you can ensure all the data, code, and documentation for your projects are accessible in a single place.
 
 To create a new project, go to *File -\> New Project...* from the top menu. In the window the appears, select *New Directory -\> New Project*. Then give your project a name and choose where to save your project. ![](images/new_directory.png){width="100%"}
 
 This will create a new folder in the location where you chose to save your new project. In this folder, you should now see a *.Rproj* file. You can use this *.Rproj* file as a shortcut to opening your project in RStudio.
+
+Go ahead and create a new *.Rproj* to organize your work for this course module. Inside of the project folder, create a new *data* directory. You can take a look at the **Files** pane to see all the files within your RStudio project.
+
+![](images/files_pane.png)
 
 ## Vectors and Matrices
 
@@ -139,12 +143,12 @@ In the example, we included both string and numeric values in vector `x`.
 
 -   By using **RStudio projects**, you can ensure all the data, scripts, and documentation for your projects are in a single place.
 
-+-------------------+------------------------------------------------------------------------------------+
-| Vocabulary        | Definition                                                                         |
-+===================+====================================================================================+
-| RStudio Projects  | A RStudio feature to organize all files and settings associated with each project. |
-+-------------------+------------------------------------------------------------------------------------+
-|                   |                                                                                    |
-+-------------------+------------------------------------------------------------------------------------+
-|                   |                                                                                    |
-+-------------------+------------------------------------------------------------------------------------+
++------------------+------------------------------------------------------------------------------------+
+| Vocabulary       | Definition                                                                         |
++==================+====================================================================================+
+| RStudio Projects | A RStudio feature to organize all files and settings associated with each project. |
++------------------+------------------------------------------------------------------------------------+
+|                  |                                                                                    |
++------------------+------------------------------------------------------------------------------------+
+|                  |                                                                                    |
++------------------+------------------------------------------------------------------------------------+

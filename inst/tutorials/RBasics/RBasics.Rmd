@@ -52,7 +52,7 @@ Keep reading to learn more!
 
 **R** is a programming language used frequently for data science and statistical applications.
 
-A **programming languages** is a human-interpretable way to provide specific instructions to a computer. There are many programming languages out there, and some examples are including Python, Javascript, and C++.
+A **programming language** is a human-interpretable way to provide specific instructions to a computer. There are many programming languages out there, and some examples are including Python, Javascript, and C++.
 
 R is a great option for the following reasons:
 

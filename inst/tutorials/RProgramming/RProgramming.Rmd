@@ -56,7 +56,7 @@ However, computers encompass so much more. After all, this device you are intera
 
 -   In 160-220, The Chinese used the Abacus (Suanpan) to do computing.
 -   In the 1840s, Ada Lovelace created the first computer program using an "Analytical Engine"
--   In the 1950s, NASA hired people "computers" to do computing to help launch stuff into space.
+-   In the 1950s, NASA hired people "computers" to do computing to help launch rockets into space.
 -   In the 1980s, Apple came out with the Macintosh which was the first "personal computer."
 
 ![](images/computers.png){width="100%"}
@@ -65,7 +65,7 @@ Why does this matter? Your executable instructions, also called **computer progr
 
 ### Computer Programming with R Scripts
 
-One of the most common mediums for you to create computer programs with R is an R Script. In the RStudio Console, you can only enter a single R command at a time, but with **R Scripts**, you can include multiple commands to be run in sequence repeatedly.
+One of the most common mediums for you to create computer programs with R is an R Script. In the RStudio Console, you can only enter a single R command at a time, but with **R Scripts**, you can include multiple commands to be run sequentially repeatedly.
 
 To create an R Script in RStudio, go to *File* -\> *New File* -\> *R Script*. You should now see a new **Source Editor** pane appear above the Console.
 
@@ -81,7 +81,7 @@ Select all the code you entered, and then select *Run*.
 
 ![](images/run.png){width="100%"}
 
-You should then see the Console run all the code you entered into your R script. You can also run individual lines of code by selecting only a single line before selecting *run*.
+You should then see the Console run all the code you entered into your R script. You can also run individual lines of code by selecting only a single line before selecting *Run*.
 
 If you would like to re-use your code, be sure to save your R script. Then, the next time you open RStudio, you will be able to open the existing R Script and run it.
 
@@ -109,7 +109,7 @@ x <- 3 + 5
 x <- x - 4
 
 # Assign to an object called `y`, the result of `x - 1`
-y <- x + 1
+y <- x - 1
 
 # Print the value stored inside of `x`
 print(x)
@@ -143,7 +143,7 @@ quiz(
 
 ### What are Objects?
 
-**Objects** (also called **Variables**) stored values for later use. In the warm-up exercise, `x` and `y` were the objects, and we used the **assignment operator** (`<-`) to assign values to them. As you saw, objects can be used in mathematical operations, and you can rewrite and update the values stored in objects.
+**Objects** (also called **variables**) store values for later use. In the warm-up exercise, `x` and `y` were the objects, and we used the **assignment operator** (`<-`) to assign values to them. As you saw, objects can be used in mathematical operations, and you can rewrite and update the values stored in objects.
 
 You can choose any name for objects, but here are a few rules about object naming in R:
 
@@ -157,13 +157,13 @@ Here are our styling recommendations when creating object names:
 -   Use **snake_case**:
 
     -   All lower case letters
-    -   use `_` to separate words
+    -   use underscore(`_`) to separate words
 
 -   Use nouns that describe the value that the object contains
 
     -   Avoid using verbs as object names (until you learn about functions). You'll understand the reasoning later when you learn about *functions*.
 
-\***Pro Tip**: As we mentioned, it's important to make your code easy to read and interpret. One way to do that is to follow a style guide. Our R styling recommendations will be based on [this style guide](http://adv-r.had.co.nz/Style.html) by Hadley Wickham.
+***Pro Tip**: As we mentioned, it's important to make your code easy to read and interpret. One way to do that is to follow a style guide. Our R styling recommendations will be based on [this style guide](http://adv-r.had.co.nz/Style.html) by Hadley Wickham.*
 
 ### The RStudio Environment Pane
 
@@ -205,7 +205,7 @@ quiz(
   question("Which of the following object names follow our styling recommendations?",
     answer("`blood_pressure`", correct = TRUE),
     answer("`bp`", message = "Not quite. Without more context, you cannot tell what `bp` represents."),
-    answer("`bloodPressure`", message = "Not quite. This type of naming is called **camelCase**, and it's more commonly used for other programming languages. Although you might occasionally see others using it in R, we don't recommend it because the more common practice in data science is to use snake_case."),
+    answer("`bloodPressure`", message = "Not quite. This type of naming is called **camelCase**, and it's more commonly used for other programming languages. Although it is not recommended based on Hadley Wickham's style guide, ."),
     answer("`measure_BP`", message = "Not quite. This object name starts with a verb."),
     allow_retry = TRUE
   )
@@ -217,9 +217,9 @@ quiz(
 
 *Lesson Objective: Apply conditional logic using if...else statement.*
 
-Up to this point, the computer programs (R scripts) you created all executed sequentially. In other words, R ran your code in order for top to bottom.
+Up to this point, the computer programs (R scripts) you created all executed sequentially. In other words, R ran every line of your code in order for top to bottom.
 
-In many cases, you may want your code to run differently, and you need to apply **control structures** to control the order in which R runs your code. The first type of control structure you'll learn about is the condition.
+In many cases, you may want your code to run differently, and you need to apply **control structures** to control the flow of your computer program. The first type of control structure you'll learn about is the condition.
 
 ### What is a Condition?
 
@@ -723,48 +723,26 @@ question("What is -14 degree Fahrenheit in Celsius?",
 -   **Control structures**, such as **conditions** and **loops**, control the flow of your computer program.
 -   **Functions** are blocks of code that you can **call** or **define** to complete specific tasks.
 
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Vocabulary                    | Definition                                                                                           |
-+:==============================+:=====================================================================================================+
+|:------------------------------|:-----------------------------------------------------------------------------------------------------|
 | Computer Programming (Coding) | Creating executable instructions for computers.                                                      |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | R Script                      | An executable R program that can contain multiple R commands.                                        |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Source Editor                 | A pane in RStudio where you can edit R Scripts and other types of files.                             |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Comments                      | Annotations that you include in your code to make it more interpretable.                             |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Objects (Variables)           | Stores values for later use.                                                                         |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Assignment operator (`<-`)    | Used to assign values to objects.                                                                    |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | snake_case                    | A way of naming objects that uses all lowercase characters and separates words using underscore(\_). |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Environment Pane              | A pane on the top right of RStudio that contains a list of your current objects and their values.    |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Control Structures            | Control the order in which R runs your code.                                                         |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Condition                     | Indicates something that must be true in order for some code to be executed.                         |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Boolean                       | Indicates logical TRUE or FALSE.                                                                     |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | If...Else Statements          | A control structure in R that runs code base on conditions.                                          |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Loops                         | Code that repeats or iterates.                                                                       |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | While Loop                    | A type of loop that iterates based on a condition.                                                   |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | For Loop                      | A type of loop that iterates through a vector.                                                       |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Functions                     | A block of code the completes a specific task on a set of inputs.                                    |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Call                          | Use or invoke a function.                                                                            |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Packages                      | Collection of functions that you can install.                                                        |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Define                        | Create a new function.                                                                               |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Arguments                     | Inputs into a function.                                                                              |
-+-------------------------------+------------------------------------------------------------------------------------------------------+
 | Return                        | The resulting value of a function. By default, this will be the last expression in the function.     |
-+-------------------------------+------------------------------------------------------------------------------------------------------+

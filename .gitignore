@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 ._inst
+._UCSFDSILearnR.Rproj
+data/._grades.csv
+inst/tutorials/RData/images/._files_pane.png
