@@ -11,6 +11,11 @@ library(knitr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r setup-data, include=FALSE}
+grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv"))
+write.csv(grades, "data/grades.csv", row.names=FALSE)
+```
+
 ## Course Overview
 
 It's great that you can create computer programs in R, but what should we make those computer programs do? R is used frequently for data science and statistical applications, and in this module, you'll be introduced to how R is used to work with data.
@@ -57,6 +62,8 @@ Go ahead and create a new *.Rproj* to organize your work for this course module.
 
 ![](images/files_pane.png)
 
+If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv), and add it to your *data* folder in your project.
+
 ## Vectors and Matrices
 
 *Lesson Objective: Apply vector and matrix operations.*
@@ -86,7 +93,7 @@ print(grade_michelle)
 print(grade_namari)
 ```
 
-You may have noticed that this code is repetitive,. There are different objects for different students, and we are applying the same mathematical operation (add 5) to all the objects. Is there a more efficient way to do this? The short answer is yes!
+You may have noticed that this code is repetitive. There are different objects for different students, and we are applying the same mathematical operation (add 5) to all the objects. Is there a more efficient way to do this? The short answer is yes!
 
 ### Vectors
 
