@@ -8,8 +8,6 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 library(knitr)
-grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv"))
-write.csv(grades, "data/grades.csv", row.names=FALSE)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -61,19 +59,29 @@ Go ahead and create a new *.Rproj* to organize your work for this course module.
 
 If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv) (click link -\> *right click* -\> *Save As...*), and add it to your *data* folder in your project.
 
-## Vectors and Matrices
+## Vectors
 
 *Lesson Objective: Apply vector and matrix operations.*
 
-Sometimes, we want to apply a mathematical operation to a sequence of values. For example, take a look at the code below:
+Suppose you are a teacher, and the table below displays your students' grades.
+
+| student  | assignment1_grade | assignment2_grade | test_grade |
+|----------|-------------------|-------------------|------------|
+| Albert   | 80                | 90                | 65         |
+| Enrico   | 90                | 85                | 70         |
+| Ian      | 85                | 100               | 80         |
+| Michelle | 85                | 85                | 75         |
+| Namari   | 90                | 95                | 75         |
+
+It looks like our students didn't do as well on the test. Let's try to apply a curve of 5 points to the test.
 
 ```{r exercise_02a, exercise=TRUE}
 # assign grades to students
-grade_albert <- 80
-grade_enrico <- 90
-grade_ian <- 85
-grade_michelle <- 85
-grade_namari <- 90
+grade_albert <- 65
+grade_enrico <- 70
+grade_ian <- 80
+grade_michelle <- 75
+grade_namari <- 75
 
 # apply 5 point curve
 grade_albert <- grade_albert + 5
@@ -90,15 +98,13 @@ print(grade_michelle)
 print(grade_namari)
 ```
 
-You may have noticed that this code is repetitive. There are different objects for different students, and we are applying the same mathematical operation (add 5) to all the objects. Is there a more efficient way to do this? The short answer is yes!
-
-### Vectors
+In the code above, we assigned the test grade of every student to separate objects, and then we added 5 to each object. Although this works, you may have noticed that it is repetitive. There are different objects for different student's scores, and we are applying the same mathematical operation (add 5) to all the objects. Is there a more efficient way to do this? The short answer is yes!
 
 **Vectors** are sequences of values. Let's revisit the example from above, but this time, we'll use a vector.
 
 ```{r exercise_02b, exercise=TRUE}
 # assign grades to students
-grades <- c(80, 90, 85, 85, 90)
+grades <- c(65, 70, 80, 75, 75)
 
 # apply 5 point curve
 grades <- grades + 5
@@ -108,6 +114,8 @@ print(grades)
 ```
 
 As you see, we were able to store all the grades in a single object as a vector, and when we applied the curve, all the grades within the vector were adjusted in a single operation.
+
+### Types of Vectors
 
 There are two types of vectors:
 
@@ -120,6 +128,9 @@ There are two types of vectors:
 **Atomic vectors** are vectors that only contain a single data type. In our example above, all the values within the `grades` vector were integers. However, you can have other types of values in vectors as well. Take a look at the examples below:
 
 ```{r exercise_02c, exercise=TRUE}
+# this vector contains numeric values
+numeric_vector <- c(65.0, 70.0, 80.0, 75.0, 75.0)
+
 # this vector contains logical (boolean) values
 logical_vector <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
 
@@ -140,6 +151,18 @@ In the example, we included both string and numeric values in vector `x`.
 ## Data Frames
 
 *Lesson Objective: Load and manipulate data in data frames.*
+
+```{r exercise_03setup, include=FALSE}
+dir.create("data")
+grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv"))
+write.csv(grades, "data/grades.csv", row.names=FALSE)
+rm(list=ls())
+```
+
+```{r exercise_03a, exercise=TRUE, exercise.setup="exercise_03setup"}
+
+
+```
 
 ## Summary
 
