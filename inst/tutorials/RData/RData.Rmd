@@ -8,12 +8,9 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 library(knitr)
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-```{r setup-data, include=FALSE}
 grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv"))
 write.csv(grades, "data/grades.csv", row.names=FALSE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## Course Overview
@@ -60,9 +57,9 @@ This will create a new folder in the location where you chose to save your new p
 
 Go ahead and create a new *.Rproj* to organize your work for this course module. Inside of the project folder, create a new *data* directory. You can take a look at the **Files** pane to see all the files within your RStudio project.
 
-![](images/files_pane.png)
+![](images/files_pane.png){width="100%"}
 
-If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv), and add it to your *data* folder in your project.
+If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv) (click link -\> *right click* -\> *Save As...*), and add it to your *data* folder in your project.
 
 ## Vectors and Matrices
 
