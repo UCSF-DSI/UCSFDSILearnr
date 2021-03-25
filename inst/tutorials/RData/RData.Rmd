@@ -377,16 +377,19 @@ print(high_achievers)
 
 *Lesson Objective: Load and manipulate data in data frames.*
 
+With a matrix, you can now work with 2-dimensional data. However, one of matrix's limitations (or feature depending on your perspective) is that all values must be the same type. In most cases, the data you're working with contains multiple types of values.
+
+To explore this, go ahead and run the code below.
+
 ```{r exercise_03setup, include=FALSE}
 dir.create("data")
-grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv"))
+grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records"))
 write.csv(grades, "data/grades.csv", row.names=FALSE)
 rm(list=ls())
 ```
 
 ```{r exercise_03a, exercise=TRUE, exercise.setup="exercise_03setup"}
-
-
+course_records <- read.csv("data/course_records.csv")
 ```
 
 ## Summary
