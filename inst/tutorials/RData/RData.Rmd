@@ -321,7 +321,7 @@ Similar to vectors, you can also use logic (vector of boolean values) to index m
 
 ```{r exercise_02i, exercise=TRUE, exercise.setup="exercise_02hsetup"}
 
-# Select all rows where assignment 2 grade was 90 or above
+# Select rows where assignment 2 grade was 90 or above (include all columns)
 print(
   all_grades[all_grades[, "assignment2_grades"] >= 90, ]
 )
@@ -383,18 +383,111 @@ To explore this, go ahead and run the code below.
 
 ```{r exercise_03setup, include=FALSE}
 dir.create("data")
-grades <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv"))
-write.csv(grades, "data/course_records.csv", row.names=FALSE)
+course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv"))
+write.csv(course_records, "data/course_records.csv", row.names=FALSE)
 rm(list=ls())
 ```
 
 ```{r exercise_03a, exercise=TRUE, exercise.setup="exercise_03setup"}
 # Read data from course_records.csv and assign it to course_records
 course_records <- read.csv("data/course_records.csv")
-View(course_records)
+course_records
 ```
 
-In the code above, we imported data from a **CSV (comma separated values)** file, using the `read.csv()`
+In the code above, we imported data from a **CSV (comma separated values)** file, using the `read.csv()` function. The data is now stored as a data frame in the *course_records* object. Data frames are the most common way of storing data in R, and it handles **tabular data** (data with rows and columns) with multiple data types. The *course_records* data frame contains multiple types of data:
+
+-   The *Name* column contains strings.
+
+-   The *Grade* column contains integers.
+
+-   The *Week.X.Attendance* columns contain boolean values.
+
+-   The *X.Assessment.Score* columns contain numeric (decimal) values.
+
+### Indexing Data Frames
+
+Similar to vectors and matrices, we use square brackets (`[ ]`) to index data frames. In fact, indexing data frames is very similar to indexing matrices.
+
+```{r exercise_03bsetup, include=FALSE}
+course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv"))
+```
+
+```{r exercise_03b, exercise=TRUE, exercise.setup="exercise_03bsetup"}
+
+# Select all columns in the first row
+print(course_records[1, ])
+
+# Select all rows in the second column
+print(course_records[, 2])
+
+# Select the pre and post assessment scores from the first 10 rows
+print(
+  course_records[
+    1:10,
+    c("Pre.Assessment.Score", "Post.Assessment.Score")
+  ]
+)
+```
+
+Similar to indexing matrices, you can use logic to index data frames.
+
+```{r exercise_03c, exercise=TRUE, exercise.setup="exercise_03bsetup"}
+
+# Select students who were present during week 5
+print(
+  course_records[
+    course_records[, "Week.5.Attendance"] == TRUE, 
+    "Name"
+  ]
+)
+```
+
+### Knowledge Check
+
+Suppose now we want to find students who were "exceptional" throughout the course. The criteria for exceptional students are:
+
+-   Attended at least 4 classes (*Hint: Lookup and apply the* `rowSums()` *function*)
+
+-   Scored higher on the post assessment than pre assessment
+
+-   Scored at least 0.8 on the post assessment
+
+In addition, you'll need to apply a curve of 0.1 to both assessment prior to selecting students based on this criteria.
+
+Write some code to store a vector with the names of "exceptional" students in an object called *top_performers*.
+
+```{r KC3, exercise=TRUE, exercise.lines=10, exercise.setup="exercise_03bsetup"}
+# YOUR WORK HERE
+
+# Apply a curve of 0.1 to both assessments
+
+
+# Select students who met the criteria and assign to `top_performers`
+
+
+# Print `top_performers`
+
+
+```
+
+```{r KC3-solution}
+
+# Apply a curve of 0.1 to both assessments
+course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
+
+# Select students who met the criteria and assign to `top_performers`
+top_performers <- course_records[
+  (rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4) &
+    (course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0)
+  ,
+  "Name"
+]
+
+# Print `top_performers`
+top_performers
+```
+
+## 
 
 ## Summary
 
