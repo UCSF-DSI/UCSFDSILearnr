@@ -478,16 +478,14 @@ course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_r
 # Select students who met the criteria and assign to `top_performers`
 top_performers <- course_records[
   (rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4) &
-    (course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0)
-  ,
+    (course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0) &
+    (course_records[, "Post.Assessment.Score"] >= 0.8),
   "Name"
 ]
 
 # Print `top_performers`
 top_performers
 ```
-
-## 
 
 ## Summary
 
