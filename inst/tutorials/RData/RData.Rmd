@@ -415,18 +415,16 @@ course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFD
 ```{r exercise_03b, exercise=TRUE, exercise.setup="exercise_03bsetup"}
 
 # Select all columns in the first row
-print(course_records[1, ])
+course_records[1, ]
 
 # Select all rows in the second column
-print(course_records[, 2])
+course_records[, 2]
 
 # Select the pre and post assessment scores from the first 10 rows
-print(
-  course_records[
-    1:10,
-    c("Pre.Assessment.Score", "Post.Assessment.Score")
-  ]
-)
+course_records[
+  1:10,
+  c("Pre.Assessment.Score", "Post.Assessment.Score")
+]
 ```
 
 Similar to indexing matrices, you can use logic to index data frames.
@@ -434,12 +432,10 @@ Similar to indexing matrices, you can use logic to index data frames.
 ```{r exercise_03c, exercise=TRUE, exercise.setup="exercise_03bsetup"}
 
 # Select students who were present during week 5
-print(
-  course_records[
-    course_records[, "Week.5.Attendance"] == TRUE, 
-    "Name"
-  ]
-)
+course_records[
+  course_records[, "Week.5.Attendance"] == TRUE, 
+  "Name"
+]
 ```
 
 ### Knowledge Check
@@ -448,7 +444,7 @@ Suppose now we want to find students who were "exceptional" throughout the cours
 
 -   Attended at least 4 classes (*Hint: Lookup and apply the* `rowSums()` *function*)
 
--   Scored higher on the post assessment than pre assessment
+-   Scored higher on the post assessment than the pre assessment
 
 -   Scored at least 0.8 on the post assessment
 
