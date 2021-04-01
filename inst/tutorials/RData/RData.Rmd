@@ -377,7 +377,7 @@ print(high_achievers)
 
 *Lesson Objective: Load and manipulate data in data frames.*
 
-With a matrix, you can now work with 2-dimensional data. However, one of matrix's limitations (or feature depending on your perspective) is that all values must be the same type. In most cases, the data you're working with contains multiple types of values.
+With a matrix, you can now work with 2-dimensional data. However, one of matrix's limitations (or feature depending on your perspective) is that all values must be the same type. However, the data you're working with often contains multiple types of values.
 
 To explore this, go ahead and run the code below.
 
@@ -389,8 +389,12 @@ rm(list=ls())
 ```
 
 ```{r exercise_03a, exercise=TRUE, exercise.setup="exercise_03setup"}
+# Read data from course_records.csv and assign it to course_records
 course_records <- read.csv("data/course_records.csv")
+View(course_records)
 ```
+
+In the code above, we imported data from a **CSV (comma separated values)** file, using the `read.csv()`
 
 ## Summary
 
