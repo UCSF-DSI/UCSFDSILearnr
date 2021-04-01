@@ -400,9 +400,9 @@ In the code above, we imported data from a **CSV (comma separated values)** file
 
 -   The *Grade* column contains integers.
 
--   The *Week.X.Attendance* columns contain boolean values.
+-   The *Week.XXX.Attendance* columns contain boolean values.
 
--   The *X.Assessment.Score* columns contain numeric (decimal) values.
+-   The *XXX.Assessment.Score* columns contain numeric (decimal) values.
 
 ### Indexing Data Frames
 
