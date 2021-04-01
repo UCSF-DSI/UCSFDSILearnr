@@ -542,9 +542,8 @@ print(high_achievers)</code></pre>
 <p>To explore this, go ahead and run the code below.</p>
 <div class="tutorial-exercise-support" data-label="exercise_03setup" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>dir.create(&quot;data&quot;)
-grades &lt;- read.csv(url(&quot;https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records&quot;))
-write.csv(grades, &quot;data/grades.csv&quot;, row.names=FALSE)
-rm(list=ls())</code></pre>
+grades &lt;- read.csv(url(&quot;https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv&quot;))
+write.csv(grades, &quot;data/grades.csv&quot;, row.names=FALSE)</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="exercise_03a" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Read data from course_records.csv and assign it to course_records
