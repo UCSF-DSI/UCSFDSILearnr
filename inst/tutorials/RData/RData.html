@@ -156,7 +156,7 @@ $(document).ready(function () {
 <p>This will create a new folder in the location where you chose to save your new project. In this folder, you should now see a <em>.Rproj</em> file. You can use this <em>.Rproj</em> file as a shortcut to opening your project in RStudio.</p>
 <p>Go ahead and create a new <em>.Rproj</em> to organize your work for this course module. Inside of the project folder, create a new <em>data</em> directory. You can take a look at the <strong>Files</strong> pane to see all the files within your RStudio project.</p>
 <p><img src="images/files_pane.png" style="width:100.0%" /></p>
-<p>If you are completing this module within RStudio, go ahead and download <a href="https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv">this csv file</a> (click link -&gt; <em>right click</em> -&gt; <em>Save As…</em>), and add it to your <em>data</em> folder in your project.</p>
+<p>If you are completing this module within RStudio, go ahead and download <a href="https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv">this csv file</a> (click link -&gt; <em>right click</em> -&gt; <em>Save As…</em>), and add it to your <em>data</em> folder in your project.</p>
 </div>
 <div id="section-vectors-and-matrices" class="section level2">
 <h2>Vectors and Matrices</h2>
@@ -543,7 +543,8 @@ print(high_achievers)</code></pre>
 <div class="tutorial-exercise-support" data-label="exercise_03setup" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>dir.create(&quot;data&quot;)
 grades &lt;- read.csv(url(&quot;https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv&quot;))
-write.csv(grades, &quot;data/grades.csv&quot;, row.names=FALSE)</code></pre>
+write.csv(grades, &quot;data/course_records.csv&quot;, row.names=FALSE)
+rm(list=ls())</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="exercise_03a" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Read data from course_records.csv and assign it to course_records
