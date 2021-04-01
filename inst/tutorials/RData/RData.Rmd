@@ -57,7 +57,7 @@ Go ahead and create a new *.Rproj* to organize your work for this course module.
 
 ![](images/files_pane.png){width="100%"}
 
-If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/grades.csv) (click link -\> *right click* -\> *Save As...*), and add it to your *data* folder in your project.
+If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv) (click link -\> *right click* -\> *Save As...*), and add it to your *data* folder in your project.
 
 ## Vectors and Matrices
 
