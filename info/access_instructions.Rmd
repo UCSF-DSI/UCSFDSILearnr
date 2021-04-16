@@ -38,3 +38,5 @@ After you'd loaded *learnr* and devtools, you can install R courses from UCSF DS
     devtools::install_github("UCSF-DSI/UCSFDSILearnr")
 
 ### Launch Courses
+
+Now that the courses have been installed, you can access them in the Tutorial Pane in the top right of RStudio
