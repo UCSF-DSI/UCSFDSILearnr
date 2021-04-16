@@ -39,4 +39,20 @@ After you'd loaded *learnr* and devtools, you can install R courses from UCSF DS
 
 ### Launch Courses
 
-Now that the courses have been installed, you can access them in the Tutorial Pane in the top right of RStudio
+Now that the courses have been installed, you can access them in the Tutorial Pane at the top right of RStudio.
+
+![Tutorials Pane is at the Top Right of RStudio](images/tutorials.png "Tutorials Pane is at the Top Right of RStudio")
+
+The courses in this series are:
+
+-   R for Everyone - Part 1: The Basics
+
+-   R for Everyone - Part 2: Computer Programming
+
+-   R for Everyone - Part 3: Data
+
+Begin a course by clicking *Start Tutorial*. We recommend viewing the course in a new window, and to do that, you'll just need to click the *Show in new window* icon at the top left of the Tutorial Pane.
+
+![Tutorial Menu is on the Top Left of the Tutorial Pane](images/tutorial_menu.png "Tutorial Menu is on the Top Left of the Tutorial Pane")
+
+You can stop or pause the course at any time, and RStudio will remember your progress.
