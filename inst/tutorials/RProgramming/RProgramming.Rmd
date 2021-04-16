@@ -32,7 +32,7 @@ You will need to have both R and RStudio installed, and we recommend accessing t
 ### Course Authors
 
 -   [Karla Lindquist, PhD](http://profiles.ucsf.edu/karla.lindquist) is the Scientific Lead for the Data Science Initiative in the UCSF Library.
--   Albert Lee is an Instructional Designer and Analyst for the Data Science Initiative at the UCSF Library.
+-   [Albert Lee](https://www.linkedin.com/in/albemlee/) is an Instructional Designer and Analyst for the Data Science Initiative at the UCSF Library.
 
 ### Creative Commons
 
@@ -40,9 +40,11 @@ All materials and topics in this course are subject to periodical changes and up
 
 ![](images/creative_commons.png)
 
-## What is Computer Programming?
+## Why use Computer Programming?
 
 *Lesson Objective: Create and run R scripts.*
+
+![Computer programming is fun!](images/fun.png "Computer programming is fun!"){width="353"}
 
 Many people describe **computer programming** (often called **coding**) as creating executable instructions for computers. Let's unpack this.
 
@@ -56,7 +58,7 @@ However, computers encompass so much more. After all, this device you are intera
 
 -   In 160-220, The Chinese used the Abacus (Suanpan) to do computing.
 -   In the 1840s, Ada Lovelace created the first computer program using an "Analytical Engine"
--   In the 1950s, NASA hired people "computers" to do computing to help launch rockets into space.
+-   In the 1950s, NASA hired people "computers" to do computing and help launch rockets into space.
 -   In the 1980s, Apple came out with the Macintosh which was the first "personal computer."
 
 ![](images/computers.png){width="100%"}
@@ -88,9 +90,9 @@ If you would like to re-use your code, be sure to save your R script. Then, the 
 ### Knowledge Check
 
 ```{r KC-1, echo=FALSE}
-question("TRUE or FALSE: My R Scripts can look sloppy as long as RStudio is able to run it.",
-  answer("TRUE", message = "Not quite. Think about all the *computers* you are creating computer programs for."),
-  answer("FALSE", correct = TRUE, message = "That's right. You should strive to make your computer programs should be interpretable by other humans as well."),
+question("TRUE or FALSE: My R scripts don't need to be interpretable by anyone but me and R!",
+  answer("TRUE ", message = "Not quite. Think about all the *computers* you are creating computer programs for."),
+  answer("FALSE ", correct = TRUE, message = "That's right. You should strive to make your computer programs interpretable to all computers, including humans!"),
   allow_retry = TRUE
 )
 ```
@@ -99,7 +101,7 @@ question("TRUE or FALSE: My R Scripts can look sloppy as long as RStudio is able
 
 *Lesson Objective: Store values inside of objects (variables).*
 
-We will begin with a quick warm-up exercise. Go ahead and run the code below, and then answer the two quiz questions.
+We will begin with a quick warm-up exercise. Go ahead and adjust the code below by uncommenting `print(x)` and `print(y)` (see Pro Tip). Then, run your code and answer the two quiz questions.
 
 ```{r exercise_01a, exercise=TRUE}
 # Assign to an object called `x`, the result of `3 + 5`
@@ -108,8 +110,25 @@ x <- 3 + 5
 # Assign to an object called `x`, the result of `x - 4`
 x <- x - 4
 
-# Assign to an object called `y`, the result of `x - 1`
-y <- x - 1
+# Assign to an object called `y`, the result of `x + 1`
+y <- x + 1
+
+# Print the value stored inside of `x`
+# print(x)
+
+# Print the value stored inside `y`
+# print(y)
+```
+
+```{r exercise_01a-solution}
+# Assign to an object called `x`, the result of `3 + 5`
+x <- 3 + 5
+
+# Assign to an object called `x`, the result of `x - 4`
+x <- x - 4
+
+# Assign to an object called `y`, the result of `x + 1`
+y <- x + 1
 
 # Print the value stored inside of `x`
 print(x)
@@ -118,17 +137,19 @@ print(x)
 print(y)
 ```
 
+***Pro Tip**: The lines of code that start with `#` are called comments. **Comments** are annotations you include in your code to help humans (including yourself!) better understand your thought process, and computers will ignore your comments when running your code.*
+
 ```{r exercise_01b, echo=FALSE}
 quiz(
   caption = "Answer the following questions:",
-  question("what is the value of x?",
+  question("What is the value of x?",
     answer("8"),
     answer("4", correct = TRUE),
     answer("5"),
     answer("Something else"),
     allow_retry = TRUE
   ),
-  question("what is the value of y?",
+  question("What is the value of y?",
     answer("8"),
     answer("4"),
     answer("5", correct = TRUE),
@@ -138,8 +159,6 @@ quiz(
 )
 
 ```
-
-***Pro Tip**: The lines of code that start with `#` are called comments. **Comments** are annotations you include in your code to help humans (including yourself!) better understand your thought process, and computers will ignore your comments when running your code.*
 
 ### What are Objects?
 
@@ -175,7 +194,7 @@ Now try running the code from the warm-up exercise inside of RStudio. We recomme
     # Assign to an object called `x`, the result of `x - 4`
     x <- x - 4
 
-    # Assign to an object called `y`, the result of `x - 1`
+    # Assign to an object called `y`, the result of `x + 1`
     y <- x + 1
 
     # Print the value stored inside of `x`
@@ -197,17 +216,19 @@ quiz(
   caption = "Answer the following questions:",
   question("Which of the following are valid object names? Select all that apply.",
     answer("`blood_pressure`", correct = TRUE),
-    answer("`bp`"),
-    answer("`bloodPressure`"),
-    answer("`measure_BP`"),
-    allow_retry = TRUE
+    answer("`bp`", correct = TRUE),
+    answer("`bloodPressure`", correct = TRUE),
+    answer("`measure-BP`"),
+    allow_retry = TRUE,
+    type="multiple"
   ),
-  question("Which of the following object names follow our styling recommendations?",
+  question("Which of the following object names follow our styling recommendations? Select all that apply.",
     answer("`blood_pressure`", correct = TRUE),
     answer("`bp`", message = "Not quite. Without more context, you cannot tell what `bp` represents."),
-    answer("`bloodPressure`", message = "Not quite. This type of naming is called **camelCase**, and it's more commonly used for other programming languages. Although it is not recommended based on Hadley Wickham's style guide, ."),
-    answer("`measure_BP`", message = "Not quite. This object name starts with a verb."),
-    allow_retry = TRUE
+    answer("`bloodPressure`", message = "Not quite. This type of naming is called **camelCase**, and it's more commonly used for other programming languages. Although it is not recommended based on Hadley Wickham's style guide, there are other R style guides that may recommend it."),
+    answer("`measure-BP`", message = "Not quite. This is not a valid object name because it contains a mathematical operator `-`."),
+    allow_retry = TRUE,
+    type="multiple"
   )
 )
 
@@ -223,7 +244,13 @@ In many cases, you may want your code to run differently, and you need to apply 
 
 ### What is a Condition?
 
-In real life, conditions indicate situations or circumstances that must be true in order for something to happen. Below are some examples of statements with conditions (conditions are *italicized*): - "Make sure to drip your faucets *when the temperature drops below 15 degrees Fahrenheit*." - "We cannot run a marathon unless *we prepare and train regularly*." - "*If you have a question*, please raise your hand."
+In real life, conditions indicate situations or circumstances that must be true in order for something to happen. Below are some examples of statements with conditions (conditions are *italicized*):
+
+-   "Make sure to drip your faucets *when the temperature drops below 15 degrees Fahrenheit*."
+
+-   "We cannot run a marathon unless *we prepare and train regularly*."
+
+-   "*If you have a question*, please raise your hand."
 
 In computer programming, **conditions** indicate something that must be true in order for some code to be executed. Notice how the words *must be true* appears in our definition of conditions in both real life and computer programming. Let's dig a little deeper and see how we determine whether something is true in computer programming.
 
@@ -237,27 +264,21 @@ x <- 1 == 1
 
 # Assign to an object called `y`, the result of `2 < 1`
 y <- 2 < 1
-
-# Print the value stored inside of `x`
-print(x)
-
-# Print the value stored inside `y`
-print(y)
 ```
 
 ```{r exercise_02b, echo=FALSE}
 quiz(
   caption = "Answer the following questions:",
-  question("what is the value of x?",
-    answer("TRUE", correct = TRUE),
-    answer("FALSE"),
+  question("What is the value of x? *Hint: Print the value of x in the code block above.*",
+    answer("TRUE ", correct = TRUE),
+    answer("FALSE "),
     answer("1"),
     answer("2"),
     allow_retry = TRUE
   ),
-  question("what is the value of y?",
-    answer("TRUE"),
-    answer("FALSE", correct = TRUE),
+  question("What is the value of y? *Hint: Print the value of y in the code block above.*",
+    answer("TRUE "),
+    answer("FALSE ", correct = TRUE),
     answer("1"),
     answer("2"),
     allow_retry = TRUE
@@ -268,45 +289,27 @@ quiz(
 
 The `==` and `<` operators are just two examples of operators that produce boolean values. There are others, and they are listed below:
 
-```{r echo=FALSE}
-Operator <- c(
-  "`<`", 
-  "`<=`", 
-  "`>`",
-  "`>=`",
-  "`==`",
-  "`!=`",
-  "`!`",
-  "<code>&#124;</code>",
-  "`&`"
-)
-Description <- c(
-  "**Less than**: TRUE if the left value is less than the right value.", 
-  "**Less than or equal to**: TRUE if the left value is less than or equal to the right value.", 
-  "**Greater than**: TRUE if the left value is greater than the right value.",
-  "**Greater than or equal to**: TRUE if the left value is greater than or equal to the right value.",
-  "**Equal to**: TRUE if the left value is equal to the right value.",
-  "**Not equal to**: TRUE if the left value is not equal to the right value.",
-  "**Not**: TRUE if the value is FALSE, FALSE if the value is TRUE.",
-  "**Or**: TRUE if either the left value or right value are TRUE.",
-  "**And**: TRUE if both the left value and right value are TRUE."
-)
-Example <- c(
-  "`1 < 2 #This is TRUE`",
-  "`1 <= 1 #This is FALSE`",
-  "`1 > 1 #This is FALSE`",
-  "`3 >= 2 #This is TRUE`",
-  "`3 == 2 #This is FALSE`",
-  "`1 != 1 #This is FALSE`",
-  "`! TRUE #This is FALSE`",
-  "<code>TRUE &#124; FALSE #This is TRUE<code>",
-  "`TRUE & FALSE #This is FALSE`"
-)
-
-vocab_table <- as.data.frame(cbind(Operator, Description, Example))
-
-kable(vocab_table, format='markdown')
-```
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| Operator | Description                                                                                       | Example                       |
++==========+===================================================================================================+===============================+
+| `<`      | **Less than:** TRUE if the left value is less than the right value.                               | `1 < 2 #This is TRUE`         |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `<=`     | **Less than or equal to:** TRUE if the left value is less than or equal to the right value.       | `1 <= 1 #This is FALSE`       |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `>`      | **Greater than:** TRUE if the left value is greater than the right value.                         | `1 > 1 #This is FALSE`        |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `>=`     | **Greater than or equal to:** TRUE if the left value is greater than or equal to the right value. | `3 >= 2 #This is TRUE`        |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `==`     | **Equal to:** TRUE if the left value is equal to the right value.                                 | `3 == 2 #This is FALSE`       |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `!=`     | **Not equal to:** TRUE if the left value is not equal to the right value.                         | `1 != 1 #This is FALSE`       |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `!`      | **Not:** TRUE if the value is FALSE, FALSE if the value is TRUE.                                  | `! TRUE #This is FALSE`       |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `|`      | **Or:** TRUE if either the left value or right value are TRUE.                                    | `TRUE | FALSE #This is TRUE`  |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
+| `&`      | **And:** TRUE if both the left value and right value are TRUE.                                    | `TRUE & FALSE #This is FALSE` |
++----------+---------------------------------------------------------------------------------------------------+-------------------------------+
 
 Similar to other operators, these operators can be used with variables (e.g. `x <= y`).
 
@@ -323,9 +326,16 @@ x <- 1
 if (x > 0){     # Check whether `x` is greater than `0`
   x <- x + 1    # if `x > 0` is TRUE, then add `1` to `x`
 }
+```
 
-# Print the value stored in `x`
-print(x)
+```{r exercise_02c_mc, echo=FALSE}
+question("What is the value of x?",
+  answer("1"),
+  answer("2", correct = TRUE),
+  answer("TRUE"),
+  answer("FALSE"),
+  allow_retry = TRUE
+)
 ```
 
 Sometimes, you may want to do something else if the boolean expression turns out to be FALSE. To do this, you'll need to include an `else`. Take a look below:
@@ -339,8 +349,16 @@ if (y < 5){     # Check whether `y` is less than `5`
 } else {        # Otherwise...
   y <- 1        # Assign `1` to `y`
 }
+```
 
-print(y)
+```{r exercise_02d_mc, echo=FALSE}
+question("What is the value of y?",
+  answer("10"),
+  answer("500"),
+  answer("5"),
+  answer("1", correct = TRUE),
+  allow_retry = TRUE
+)
 ```
 
 In other cases, you may want to check multiple conditions and perform different actions depending on which is TRUE. To do this, you'll need to use `else if`. Take a look below:
@@ -356,8 +374,16 @@ if (z > 5){               # Check whether `z` is greater than `5`
 } else {                  # Otherwise...
   z <- 1                  # If none of the conditions above are TRUE, assign `1` to `z`
 }
+```
 
-print(z)
+```{r exercise_02e_mc, echo=FALSE}
+question("What is the value of z?",
+  answer("50"),
+  answer("2500", correct = TRUE),
+  answer("5"),
+  answer("1"),
+  allow_retry = TRUE
+)
 ```
 
 You can have multiple `else if`s chained together if you have many conditions to evaluate.
@@ -386,33 +412,53 @@ Generalizing what you saw in the above scenarios, conditional statements in R ta
 Write some code based on the description below:
 
     Subtract 85 from 100 and assign the result to an object named `score`
+
     If score is 90 or above, assign 'A' to an object named `grade`
+
     Otherwise if the `score` is 80 or above, assign 'B' to an object named `grade`
+
     Otherwise if the `score` is 70 or above, assign 'C' to an object named `grade`
+
     Otherwise if the `score` is 60 or above, assign 'D' to an object named `grade`
+
     Otherwise if the `score` is below 60, assign 'Hidden' to an object named `grade`
+
     Print the value stored in `grade`
 
 You can reveal the solution once you are comfortable with your response
 
 ```{r KC2, exercise=TRUE, exercise.lines=15}
 # YOUR WORK HERE
+# Subtract 85 from 100 and assign the result to an object named `score`
+
+# If score is 90 or above, assign "A" to an object named `grade`
+
+# Otherwise if the `score` is 80 or above, assign "B" to an object named `grade`
+
+# Otherwise if the `score` is 70 or above, assign "C" to an object named `grade`
+
+# Otherwise if the `score` is 60 or above, assign "D" to an object named `grade`
+
+# Otherwise if the `score` is below 60, assign "Hidden" to an object named `grade`
+
+# Print the value stored in `grade`
+
 ```
 
 ```{r KC2-solution}
 # Subtract 85 from 100 and assign the result to an object named `score`
 score = 100 - 85
 
-if (score >= 90){          # If score is 90 or above, assign 'A' to an object named `grade`
+if (score >= 90){          # If score is 90 or above, assign "A" to an object named `grade`
   grade <- "A"
-} else if (score >= 80){   # Otherwise if the `score` is 80 or above, assign 'B' to an object named `grade`
+} else if (score >= 80){   # Otherwise if the `score` is 80 or above, assign "B" to an object named `grade`
   grade <- "B"
-} else if (score >= 70){   # Otherwise if the `score` is 70 or above, assign 'C' to an object named `grade`
+} else if (score >= 70){   # Otherwise if the `score` is 70 or above, assign "C" to an object named `grade`
   grade <- "C"
-} else if (score >= 60){   # Otherwise if the `score` is 60 or above, assign 'D' to an object named `grade`
+} else if (score >= 60){   # Otherwise if the `score` is 60 or above, assign "D" to an object named `grade`
   grade <- "D"
-} else{                   # Otherwise if the `score` is below 60, assign 'Hidden' to an object named `grade`
-  grade <- Hidden
+} else{                   # Otherwise if the `score` is below 60, assign "Hidden" to an object named `grade`
+  grade <- "Hidden"
 }
 
 # Print the value stored in `grade`
@@ -428,103 +474,49 @@ Take a look at the code below. Try to determine the resulting value of `x` witho
 ```{r exercise_03a, exercise=TRUE}
 x <- 1
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
 
-if (x < 20){
+if (x < 7){
   x <- x + 1
 }
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-if (x < 20){
-  x <- x + 1
-}
-
-print(x)
 ```
 
 ```{r exercise_03b, echo=FALSE}
-question("what is the value of x?",
-  answer("21"),
-  answer("20", correct = TRUE),
-  answer("19"),
+question("What is the value of x?",
+  answer("6"),
+  answer("7", correct = TRUE),
+  answer("8"),
   answer("Something else"),
   allow_retry = TRUE
 )
 
 ```
 
-That might've been an annoying exercise, and you had to count the number of time `if (x < 20)` appeared in the code to ensure the answer wasn't 19.
+That might've been an annoying exercise, and you had to count the number of times `if (x < 7)` appeared in the code to ensure the answer wasn't 6.
 
-Luckily, we can use loops to simplify this code and make it more human-interpretable! **Loops** are used to express code that repeats or iterates. In the sample above, you saw that `if (x < 20)` repeated many times.
+Luckily, we can use loops to simplify this code and make it more human-interpretable! **Loops** are used to express code that repeats or iterates. In the sample above, you saw that `if (x < 7)` repeated many times.
 
 There are two common forms of loops in R. The `while` loop and the `for` loop.
 
@@ -539,19 +531,28 @@ The **while loop** takes the form below:
       
     }
 
+This may look very similar to an if statement, but there is a key difference. After executing `some_code`, the while loop will check the `boolean_expression` again, and if it is `TRUE`, then the loop will continue executing `some_code`. The while loop will keep repeating or looping until the `boolean_expression` is `FALSE`.
+
 Using a while loop, we can dramatically simplify our code:
 
 ```{r exercise_03c, exercise=TRUE}
 x <- 1
 
-while (x < 20){
+while (x < 7){
   x <- x + 1
 }
 
 print(x)
 ```
 
-This may look very similar to an `if` statement, but there is a key difference. After executing `some_code`, the while loop will check the `boolean_expression` again, and if it is `TRUE`, then the loop will continue executing `some_code. The while loop will keep repeating or looping until the`boolean_expression`is FALSE. A common error involving while loops is when the`boolean_expression`never evaluates to FALSE, and the loop continues looping indefinitely. This is called an`infinite loop\`.
+A common error involving while loops is when the `boolean_expression` never evaluates to FALSE, and the loop continues looping indefinitely. This is called an **infinite loop**. Below is an example of an infinite loop.
+
+    x <- 1
+
+    # This will infinite loop because x is always greater than 0!
+    while (x > 0){ 
+      x <- x + 1
+    }
 
 ***Pro Tip**: If you are stuck in an infinite loop while executing R code, don't panic. To halt the infinite looping, click the stop sign icon that appears in the top right of the Console pane in RStudio.*
 
@@ -560,8 +561,8 @@ This may look very similar to an `if` statement, but there is a key difference. 
 The **for loop** is slightly different than a while loop. Rather than using a condition to determine whether to continue looping, the for loop will apply some code to every item in a vector. For example:
 
 ```{r exercise_03d, exercise=TRUE}
-
-for (int_value in 1:20){   # For every `int_value` in `1:20`, assign `int_value` to `x`
+# For every `int_value` in `1:7`, assign `int_value` to `x`
+for (int_value in 1:7){ 
   x <- int_value
 }
 
@@ -570,29 +571,40 @@ print(x)
 
 *Note: You haven't learned about vectors yet. For now, think of them as collections of items*
 
-Unlike while loops, it's not possible to infinite loop with a for loop.
-
 ### Knowledge Check
 
 Write some code based on the description below:
 
     Assign 0 to an object named `int_value`
-    Increment `int_value` by 3 until it is greater than 999
+    Increment `int_value` by 3 while it is less than or equal to 999
     Print the value stored in `int_value`
 
 You can reveal the solution once you are comfortable with your response
 
 ```{r KC3, exercise=TRUE, exercise.lines=15}
 # YOUR WORK HERE
+# Assign 0 to an object named `int_value`
+
+
+# Increment `int_value` by 3 while it is less than or equal to 999
+
+
+
+
+# Print the value stored in `int_value`
+
 ```
 
 ```{r KC3-solution}
-int_value = 0
+# Assign 0 to an object named `int_value`
+int_value <- 0
 
-while (!(int_value > 999)){        # while int_value is not greater than 999...
+# Increment `int_value` by 3 while it is less than or equal to 999
+while (int_value <= 999){
   int_value <- int_value + 3
 }
 
+# Print the value stored in `int_value`
 print(int_value)
 ```
 
@@ -651,7 +663,7 @@ convert_in_cm <- function(measurement, unit) {
   } else if (unit == "cm"){
     conversion <- measurement / 2.54
   } 
-  conversion
+  return(conversion)
 }
 
 # Try adjusting the code below so result contains 3 cm converted to in.
@@ -672,7 +684,7 @@ Let's breakdown some key aspects of defining functions:
 
 -   Functions are stored in objects: Just like values, functions are stored in objects. Unlike objects that contain values, we recommend using object names that start with verbs for functions.
 -   Functions contain arguments: **Arguments** are inputs into the function. In our `convert_in_cm` example, `measurement` and `unit` were the arguments.
--   Functions **return** the result of its last expression: In our example, when we execute `result <- convert_in_cm(measurement=5, unit="in")`, the `result` object will contain the value produced by the last expression in `convert_in_cm`, which is `conversion`. You can also use the `return` function to specify values to return.
+-   Functions **return** the value within the `return()` function: In our example, when we execute `result <- convert_in_cm(measurement=5, unit="in")`, the `result` object will contain the value stored in `conversion` when its used in `return(conversion)`.
 
 ### Knowledge Check
 
@@ -680,6 +692,10 @@ Define a function named `convert_fahrenheit_celcius`. The function will convert 
 
 -   `temperature`: A value representing the temperature in either
 -   `unit`: Either "F" or "C" based on whether the input temperature is Fahrenheit or Celsius.
+
+Here is a conversion formula between Fahrenheit and Celsius:
+
+(32**°F** − 32) × 5/9 = 0**°C**
 
 Once you have defined your function, call your function to convert -14 degree Fahrenheit to Celsius.
 
@@ -723,26 +739,48 @@ question("What is -14 degree Fahrenheit in Celsius?",
 -   **Control structures**, such as **conditions** and **loops**, control the flow of your computer program.
 -   **Functions** are blocks of code that you can **call** or **define** to complete specific tasks.
 
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Vocabulary                    | Definition                                                                                           |
-|:------------------------------|:-----------------------------------------------------------------------------------------------------|
++:==============================+:=====================================================================================================+
 | Computer Programming (Coding) | Creating executable instructions for computers.                                                      |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | R Script                      | An executable R program that can contain multiple R commands.                                        |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Source Editor                 | A pane in RStudio where you can edit R Scripts and other types of files.                             |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Comments                      | Annotations that you include in your code to make it more interpretable.                             |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Objects (Variables)           | Stores values for later use.                                                                         |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Assignment operator (`<-`)    | Used to assign values to objects.                                                                    |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | snake_case                    | A way of naming objects that uses all lowercase characters and separates words using underscore(\_). |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Environment Pane              | A pane on the top right of RStudio that contains a list of your current objects and their values.    |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Control Structures            | Control the order in which R runs your code.                                                         |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Condition                     | Indicates something that must be true in order for some code to be executed.                         |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Boolean                       | Indicates logical TRUE or FALSE.                                                                     |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | If...Else Statements          | A control structure in R that runs code base on conditions.                                          |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Loops                         | Code that repeats or iterates.                                                                       |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | While Loop                    | A type of loop that iterates based on a condition.                                                   |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | For Loop                      | A type of loop that iterates through a vector.                                                       |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Functions                     | A block of code the completes a specific task on a set of inputs.                                    |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Call                          | Use or invoke a function.                                                                            |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Packages                      | Collection of functions that you can install.                                                        |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Define                        | Create a new function.                                                                               |
++-------------------------------+------------------------------------------------------------------------------------------------------+
 | Arguments                     | Inputs into a function.                                                                              |
-| Return                        | The resulting value of a function. By default, this will be the last expression in the function.     |
++-------------------------------+------------------------------------------------------------------------------------------------------+
+| Return                        | The resulting value of a function. You can specify this using the `return()` function.               |
++-------------------------------+------------------------------------------------------------------------------------------------------+
