@@ -62,17 +62,13 @@ R is a great option for the following reasons:
 -   There is a large community of R users (many of whom do data science) who provide support for each other.
 
 <details>
-
 <summary>
-
 **R vs Python**
-
 </summary>
 
 Another popular language used for data science and statistical applications is Python. Although this course is R-based, both R and Python are excellent programming languages for beginners to learn.
 
 To determine whether to start with R and Python, we recommend picking the language your friends and colleagues use. That way, they can support you as you are learning!
-
 </details>
 
 <br />
@@ -106,13 +102,13 @@ question("TRUE or FALSE: RStudio is a programming language used frequently for d
 
 Let's try launching RStudio. If you haven't already, go ahead and open RStudio on your computer. You should see something like this.
 
-![](images/rstudio_window.png){width="100%"}
+![RStudio Window](images/rstudio_window.png "RStudio Window"){width="100%"}
 
 ### RStudio Console
 
 First, let's take a look at the Console on the left side of the window. Inside the **Console**, you can enter R commands. Try entering `1 + 1` inside the Console and then pressing *Enter*.
 
-![](images/console.png){width="100%"}
+![The RStudio Console is located at the left side of the RStudio Window.](images/console.png "RStudio Console"){width="100%"}
 
 You can think of the Console as a calculator, and many mathematical operators are built into the R programming language. For example, try entering `2 * 4 - 6 / 2` in the Console.
 

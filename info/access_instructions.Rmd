@@ -3,7 +3,9 @@ title: "Access Instructions"
 output: html_notebook
 ---
 
-To access the module, you'll need to complete the following steps:
+You'll need to have R and RStudio installed, and you'll access the self-paced R for Everyone modules directly inside of RStudio!
+
+To access the modules, open RStudio, and you'll need to complete the following steps:
 
 1.  Install learnr and devtools
 

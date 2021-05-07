@@ -49,15 +49,23 @@ Up to this point in the R for Everyone series, you haven't needed to set up an R
 
 By using **RStudio Projects**, you can ensure all the data, code, and documentation for your projects are accessible in a single place.
 
-To create a new project, go to *File -\> New Project...* from the top menu. In the window the appears, select *New Directory -\> New Project*. Then give your project a name and choose where to save your project. ![](images/new_directory.png){width="100%"}
+To create a new project, go to *File -\> New Project...\** from the top menu. In the window the appears, select *New Directory -\> New Project*. Then give your project a name and choose where to save your project.
+
+*\* Notes:*
+
+-   *Creating or opening a new RStudio Project will close this tutorial. No worries though! You can resume this tutorial from where you left off in the new RStudio Project.*
+
+-   *In older versions of RStudio, this may be displayed as Empty Project instead of New Project.*
+
+![Create a new RStudio Project to organize your files](images/new_directory.png "RStudio Project")
 
 This will create a new folder in the location where you chose to save your new project. In this folder, you should now see a *.Rproj* file. You can use this *.Rproj* file as a shortcut to opening your project in RStudio.
 
-Go ahead and create a new *.Rproj* to organize your work for this course module. Inside of the project folder, create a new *data* directory. You can take a look at the **Files** pane to see all the files within your RStudio project.
+Go ahead and create a new *.Rproj* to organize your work for this course module. Inside of the project folder, create a new *data* directory. To do this, you can select *New Folder* from the menu in the **Files** pane, which is located at the bottom right of the RStudio window.
 
-![](images/files_pane.png){width="100%"}
+![The Files pane is located at the bottom right of the RStudio window.](images/files_pane.png "Files Pane"){width="100%"}
 
-If you are completing this module within RStudio, go ahead and download [this csv file](https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv) (click link -\> *right click* -\> *Save As...*), and add it to your *data* folder in your project.
+If you are completing this module within RStudio, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1Br49EnqLiUUP-lGE2LO2ZA4WE1jVC23g), and add it to your *data* folder in your project.
 
 ## Vectors and Matrices
 
@@ -73,7 +81,7 @@ Suppose you are a teacher, and the table below displays your students' grades.
 | Michelle | 85                | 85                | 75         |
 | Namari   | 90                | 95                | 75         |
 
-It looks like our students didn't do as well on the test. Let's try to apply a curve of 5 points to the test.
+It looks like our students didn't do as well on the test. Let's try to apply a grade adjustment of 5 points to the test.
 
 ```{r exercise_02a, exercise=TRUE}
 # assign grades to students
@@ -83,7 +91,7 @@ grade_ian <- 80
 grade_michelle <- 75
 grade_namari <- 75
 
-# apply 5 point curve
+# apply 5 point grade adjustment
 grade_albert <- grade_albert + 5
 grade_enrico <- grade_enrico + 5
 grade_ian <- grade_ian + 5
@@ -102,20 +110,33 @@ In the code above, we assigned the test grade of every student to separate objec
 
 ### Vectors
 
-**Vectors** are sequences of values. Let's revisit the example from above, but this time, we'll use a vector.
+**Vectors** are sequences of values (think rows or columns of data in a table). Let's revisit the example from above, but this time, we'll use a vector.
 
 ```{r exercise_02b, exercise=TRUE}
 # assign grades to students
 grades <- c(65, 70, 80, 75, 75)
 
-# apply 5 point curve
+# apply 5 point grade adjustment
 grades <- grades + 5
 
 # display grades
 print(grades)
 ```
 
-As you see, we were able to store all the grades in a single object as a vector using the `c()` function, and when we applied the curve, all the grades within the vector were adjusted in a single operation.
+As you see, we were able to store all the grades in a single object as a vector using the `c()` function, and when we applied the grade adjustment, all the grades within the vector were adjusted in a single operation.
+
+In addition to integers, vectors can hold other types of values as well. However, each vector can only contain a single type of value.
+
+```{r exercise_02db1, exercise=TRUE}
+# vector of numeric values
+print(c(1.1, 50.0, 92.562))
+
+# vector of character values (use double quotes)
+print(c("pizza", "soda pop", "garlic bread", "3"))
+
+# vector of boolean values
+print(c(TRUE, FALSE))
+```
 
 #### Indexing Vectors
 
@@ -161,15 +182,19 @@ In fact, the values inside of the square brackets are vectors as well!
 
 -   `grades > 80` is a vector with boolean values (`c(FALSE, FALSE, TRUE, FALSE, FALSE)`).
 
+![Values inside the square brackets are vectors as well!](images/vector_indexing.gif "Vector Indexing")
+
 #### Knowledge Check
 
-Write some code based on the description below:
+Write some code based on the description and table below:
 
-    Assign students names to an object named `students`
-    Assign assignment 1 grades to an object named `assignment1_grades`
-    Assign assignment 2 grades to an object named `assignment2_grades`
+    Assign student names to an object (vector) named `students`
+    Assign assignment 1 grades to an object (vector) named `assignment1_grades`
+    Assign assignment 2 grades to an object (vector) named `assignment2_grades`
 
     Index the `students` vector and include only those who scored 85 and above on assignment 1 and 90 or above on assignment 2. Store the results in an object called `high_achievers` and print the results.
+
+***Hint**: What's the result of `c(TRUE, TRUE, FALSE, FALSE) & c(TRUE, FALSE, TRUE, FALSE)?` How about `c(TRUE, TRUE, FALSE, FALSE) | c(TRUE, FALSE, TRUE, FALSE)`? Test these out in the Console to understand how logical AND and OR operations are applied to vectors.*
 
 | student  | assignment1_grade | assignment2_grade | test_grade |
 |:---------|:------------------|:------------------|:-----------|
@@ -184,13 +209,13 @@ You can reveal the solution once you are comfortable with your response
 ```{r KC2a, exercise=TRUE, exercise.lines=15}
 # YOUR WORK HERE
 
-# Assign students names to an object named `students`
+# Assign student names to an object (vector) named `students`
 
 
-# Assign assignment 1 grades to an object named `assignment1_grades`
+# Assign assignment 1 grades to an object (vector) named `assignment1_grades`
 
 
-# Assign assignment 2 grades to an object named `assignment2_grades`
+# Assign assignment 2 grades to an object (vector) named `assignment2_grades`
 
 
 # Index the `students` vector and include only those that scored 85 or above on assignment 1 and 90 or above on assignment 2. Store the results in an object called `high_achievers`.
@@ -202,7 +227,7 @@ You can reveal the solution once you are comfortable with your response
 ```
 
 ```{r KC2a-solution}
-# Assign students names to an object named `students`
+# Assign student names to an object named `students`
 students <- c("Albert", "Enrico", "Ian", "Michelle", "Namari")
 
 # Assign assignment 1 grades to an object named `assignment1_grades`
@@ -234,7 +259,7 @@ all_grades <- matrix(
 print(all_grades)
 ```
 
-Using the `matrix()` function, we can specify the values, number of rows, and number of columns in our matrix. This isn't always practical, and as you can see above, it's hard to keep track of which values are assignment 1 grades, assignment 2 grades, and test grades in `c(80, 90, 85, 85, 90, 90, 85, 100, 85, 95, 65, 70, 80, 75, 75)`.
+Using the `matrix()` function, we can specify the values, number of rows, and number of columns in our matrix. This isn't always practical, and as you can see above, it's hard to keep track of which values in `c(80, 90, 85, 85, 90, 90, 85, 100, 85, 95, 65, 70, 80, 75, 75)` are assignment 1 grades, assignment 2 grades, and test grades.
 
 A better way to do this is to leverage vectors.
 
@@ -252,7 +277,7 @@ print(all_grades)
 
 By using the `cbind()` function, we're able to make each vector a column in our new matrix. Another useful function for combining vectors into matrices is the `rbind()` function which makes each vector a row.
 
-By using vectors to create your matrix, you make your code easier to read. You may have also notices that `cbind()` automatically named the columns of your matrix based on the names of the vectors. Likewise, `rbind()` will name the rows of your matrix based on the vector names. Let's go ahead and name the rows of the `all_grades` matrix.
+By using vectors to create your matrix, you make your code easier to read. You may have also notices that `cbind()` automatically named the columns of your matrix based on the names of the vectors. Likewise, `rbind()` will name the rows of your matrix based on the vector names. Let's go ahead and name the rows of the `all_grades` matrix using the students' names.
 
 ```{r exercise_02gsetup, include=FALSE}
 
@@ -326,6 +351,8 @@ print(
   all_grades[all_grades[, "assignment2_grades"] >= 90, ]
 )
 ```
+
+![Remember to specify both your row and column indices.](images/matrix_indexing.gif "Matrix Indexing")
 
 #### Knowledge Check
 
@@ -404,6 +431,8 @@ In the code above, we imported data from a **CSV (comma separated values)** file
 
 -   The *XXX.Assessment.Score* columns contain numeric (decimal) values.
 
+***Pro Tip**: You can view your data frames in your Environment Pane, by clicking an object that contains the data frame you would like to view*
+
 ### Indexing Data Frames
 
 Similar to vectors and matrices, we use square brackets (`[ ]`) to index data frames. In fact, indexing data frames is very similar to indexing matrices.
@@ -440,44 +469,132 @@ course_records[
 
 ### Knowledge Check
 
-Suppose now we want to find students who were "exceptional" throughout the course. The criteria for exceptional students are:
+Consider the following scenario for this multi-part Knowledge Check.
 
--   Attended at least 4 classes (*Hint: Lookup and apply the* `rowSums()` *function*)
+Suppose now we want to find students who were "exceptional" throughout the course. The criteria for exceptional students are:
 
 -   Scored higher on the post assessment than the pre assessment
 
 -   Scored at least 0.8 on the post assessment
 
-In addition, you'll need to apply a curve of 0.1 to both assessment prior to selecting students based on this criteria.
+-   Attended at least 4 classes (*Hint: Lookup and apply the* `rowSums()` *function*)
 
-Write some code to store a vector with the names of "exceptional" students in an object called *top_performers*.
+In addition, you'll need to apply a grade adjustment and add 0.1 to both assessments prior to selecting students based on this criteria.
 
-```{r KC3, exercise=TRUE, exercise.lines=10, exercise.setup="exercise_03bsetup"}
+Let's work through this one step at a time.
+
+#### Part A: Adjust Assessment Columns in Data Frame
+
+First let's apply a grade adjustment and add 0.1 to both assessments.
+
+The data is stored in `course_records`. The data for the assessments are located in the `Pre.Assessment.Score` and `Post.Assessment.Score` columns. Go ahead and use indexing to add 0.1 to all scores in both assessments. Print the updated `course_records` data frame.
+
+```{r KC3A, exercise=TRUE, exercise.lines=10, exercise.setup="exercise_03bsetup"}
 # YOUR WORK HERE
 
-# Apply a curve of 0.1 to both assessments
+# Apply a grade adjustment of 0.1 to both assessments
 
+
+# Print `course_records`
+
+
+```
+
+```{r KC3A-solution}
+
+# Apply a grade adjustment of 0.1 to both assessments
+course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
+
+# Print `course_records`
+course_records
+```
+
+#### Part B: Create Logical Vectors Based on Criteria
+
+Next, create logical vectors that will represent the criteria for "exceptional" students:
+
+-   Criteria 1: Attended at least 4 classes
+
+-   Criteria 2: Scored higher on the post assessment than the pre assessment
+
+-   Criteria 3: Scored at least 0.8 on the post assessment
+
+Store these vectors in `criteria_1`, `criteria_2`, `criteria_3`. We provided `criteria_1` for you (*recommendation: review the documentation for the `rowSums()` function*), but you need to write code to create `criteria_2` and `criteria_3`.
+
+```{r KC3B, exercise=TRUE, exercise.lines=15, exercise.setup="exercise_03bsetup"}
+# Apply a grade adjustment of 0.1 to both assessments
+course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
+
+# Create criteria_1 vector (Attended at least 4 classes)
+criteria_1 <- rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4)
+
+# YOUR WORK HERE
+
+# Create criteria_2 vector (Scored higher on the post assessment than the pre assessment)
+
+
+# Create criteria_3 vector (Scored at least 0.8 on the post assessment)
+
+
+```
+
+```{r KC3B-solution}
+
+# Apply a grade adjustment of 0.1 to both assessments
+course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
+
+# Create criteria_1 vector (Attended at least 4 classes)
+criteria_1 <- rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4
+
+# Create criteria_2 vector (Scored higher on the post assessment than the pre assessment)
+criteria_2 <- course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0
+
+# Create criteria_3 vector (Scored at least 0.8 on the post assessment)
+criteria_3 <- course_records[, "Post.Assessment.Score"] >= 0.8
+```
+
+#### Part C: Use Criteria Vectors to Index Data Frame
+
+Now we can index course_records to view "exceptional" students. Use the criteria vectors you created in Part B to select students who meet all three criteria (*hint: you'll need to use the `&` operator*). Make sure you select the `Name` column from `course_records`, and you will store the results in an object called `top_performers`.
+
+```{r KC3C, exercise=TRUE, exercise.lines=25, exercise.setup="exercise_03bsetup"}
+# Apply a grade adjustment of 0.1 to both assessments
+course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
+
+# Create criteria_1 vector (Attended at least 4 classes)
+criteria_1 <- rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4
+
+# Create criteria_2 vector (Scored higher on the post assessment than the pre assessment)
+criteria_2 <- course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0
+
+# Create criteria_3 vector (Scored at least 0.8 on the post assessment)
+criteria_3 <- course_records[, "Post.Assessment.Score"] >= 0.8
+
+# YOUR WORK HERE
 
 # Select students who met the criteria and assign to `top_performers`
 
 
 # Print `top_performers`
 
-
 ```
 
-```{r KC3-solution}
+```{r KC3C-solution}
 
-# Apply a curve of 0.1 to both assessments
+# Apply a grade adjustment of 0.1 to both assessments
 course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
 
+# Create criteria_1 vector (Attended at least 4 classes)
+criteria_1 <- rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4
+
+# Create criteria_2 vector (Scored higher on the post assessment than the pre assessment)
+criteria_2 <- course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0
+
+# Create criteria_3 vector (Scored at least 0.8 on the post assessment)
+criteria_3 <- course_records[, "Post.Assessment.Score"] >= 0.8
+
 # Select students who met the criteria and assign to `top_performers`
-top_performers <- course_records[
-  (rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4) &
-    (course_records[, "Post.Assessment.Score"] - course_records[, "Pre.Assessment.Score"] > 0) &
-    (course_records[, "Post.Assessment.Score"] >= 0.8),
-  "Name"
-]
+top_performers <- course_records[criteria_1 & criteria_2 & criteria_3, "Name"]
 
 # Print `top_performers`
 top_performers
