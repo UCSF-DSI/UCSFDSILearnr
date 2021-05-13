@@ -526,7 +526,7 @@ Store these vectors in `criteria_1`, `criteria_2`, `criteria_3`. We provided `cr
 course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] <- course_records[, c("Pre.Assessment.Score", "Post.Assessment.Score")] + 0.1
 
 # Create criteria_1 vector (Attended at least 4 classes)
-criteria_1 <- rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4)
+criteria_1 <- rowSums(course_records[, c("Week.1.Attendance", "Week.2.Attendance", "Week.3.Attendance", "Week.4.Attendance", "Week.5.Attendance")]) >= 4
 
 # YOUR WORK HERE
 
