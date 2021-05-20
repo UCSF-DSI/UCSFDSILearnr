@@ -44,9 +44,21 @@ All materials and topics in this course are subject to periodical changes and up
 
 ## Types of Variables
 
+If you are following along in the RStudio console, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1IqK-Z5O1fDCZ-ow7B8sDxH_ITJAkqe5n), and add it to your RStudio project folder.
+
 ```{r exercise_01setup, include=FALSE}
 dir.create("data")
-course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv"))
-write.csv(course_records, "data/course_records.csv", row.names=FALSE)
-rm(list=ls())
+course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/hrs/hrs_analyze.csv"))
 ```
+
+Numerical
+
+-   Continuous
+
+-   Discrete
+
+Categorical
+
+-   Nominal
+
+-   Ordinal

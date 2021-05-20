@@ -65,7 +65,7 @@ Go ahead and create a new *.Rproj* to organize your work for this course module.
 
 ![The Files pane is located at the bottom right of the RStudio window.](images/files_pane.png "Files Pane"){width="100%"}
 
-If you are completing this module within RStudio, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1Br49EnqLiUUP-lGE2LO2ZA4WE1jVC23g), and add it to your *data* folder in your project.
+If you are following along in the RStudio console, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1Br49EnqLiUUP-lGE2LO2ZA4WE1jVC23g), and add it to your *data* folder in your project.
 
 ## Vectors and Matrices
 
