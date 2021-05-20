@@ -25,9 +25,9 @@ Of course, there is a lot more to computer programming than just entering mathem
 
 ### Prerequisites
 
-Prior to completing this course module, you should have already completed "R for Everyone - Part 1: The Basics." If you have not completed that course module yet, please start there.
-
 You will need to have both R and RStudio installed, and we recommend accessing this course module through RStudio.
+
+Prior to completing this course module, you should have already completed "R for Everyone - Part 1: The Basics." If you have not completed that course module yet, please start there.
 
 ### Course Authors
 

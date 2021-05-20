@@ -1,0 +1,52 @@
+---
+title: "R for Statistics - Part 1: Descriptive Statistics"
+description: "Apply Descriptive Statistics with R."
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Course Overview
+
+We define **statistics** as using math to make sense of data. In this module, you will explore **descriptive statistics**, which is using statistics to describe data.
+
+By the end of the course module, you will be able to:
+
+-   Categorize different types of statistical variables.
+
+-   Create and interpret visualizations to describe numerical variables.
+
+-   Create and interpret visualizations to describe categorical variables.
+
+-   Create and interpret visualizations to describe relationships between variables.
+
+### Prerequisites
+
+You will need to have both R and RStudio installed, and you will be viewing this course through RStudio.
+
+Prior to completing this course module, you should have complete the modules in the R for Everyone Series.
+
+### Course Authors
+
+-   [Karla Lindquist, PhD](http://profiles.ucsf.edu/karla.lindquist) is the Scientific Lead for the Data Science Initiative in the UCSF Library.
+-   [Albert Lee](www.linkedin.com/in/albemlee) is an Instructional Designer and Analyst for the Data Science Initiative at the UCSF Library.
+
+### Creative Commons
+
+All materials and topics in this course are subject to periodical changes and updates by the Instructor. This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+
+![](images/creative_commons.png)
+
+## Types of Variables
+
+```{r exercise_01setup, include=FALSE}
+dir.create("data")
+course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/course_records.csv"))
+write.csv(course_records, "data/course_records.csv", row.names=FALSE)
+rm(list=ls())
+```
