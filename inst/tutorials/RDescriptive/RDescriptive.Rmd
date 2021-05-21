@@ -8,6 +8,8 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 library(knitr)
+library(tidyverse)
+library(ggplot2)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -44,21 +46,185 @@ All materials and topics in this course are subject to periodical changes and up
 
 ## Types of Variables
 
-If you are following along in the RStudio console, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1IqK-Z5O1fDCZ-ow7B8sDxH_ITJAkqe5n), and add it to your RStudio project folder.
+Let's start by taking a look at a data set. If you are following along in the RStudio console, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1YeBAn8geVfBL57WKo9ymGGxZ1QXXSqWj), and add it to a RStudio project folder. Run the code below to view the first few rows in this data set of video games.
 
 ```{r exercise_01setup, include=FALSE}
-dir.create("data")
-course_records <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/hrs/hrs_analyze.csv"))
+# Data from https://think.cs.vt.edu/corgis/csv/video_games/
+video_games <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/video_games.csv"))
+video_games <- as_tibble(video_games)
+video_games <- video_games %>% 
+  select(
+    Title, 
+    Features.Max.Players, 
+    Metadata.Genres, 
+    Metadata.Publishers, 
+    Metrics.Review.Score, 
+    Metrics.Sales, 
+    Release.Console, 
+    Release.Rating, 
+    Release.Year
+  ) %>%
+  rename(
+    game_title = Title, 
+    max_players = Features.Max.Players, 
+    genre = Metadata.Genres, 
+    publisher = Metadata.Publishers, 
+    review_score = Metrics.Review.Score, 
+    sales = Metrics.Sales, 
+    console = Release.Console,
+    rating = Release.Rating, 
+    release_year = Release.Year
+  )
+
+write.csv(video_games, "video_games.csv", row.names=FALSE)
+rm(list=ls())
 ```
 
-Numerical
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Column       | Description (Taken from [CORGIS](https://think.cs.vt.edu/corgis/csv/video_games/))                                                                                       |
++==============+==========================================================================================================================================================================+
+| game_title   | "The full title of this game."                                                                                                                                           |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| max_players  | "The maximum number of players that can play this game."                                                                                                                 |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| genre        | "The list of genres that this game belongs to."                                                                                                                          |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| publisher    | "The list of publishers who created this game."                                                                                                                          |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| review_score | "A typical review score for this game, out of 100."                                                                                                                      |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| sales        | "The total sales made on this game, measured in millions of dollars."                                                                                                    |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| console      | "The name of the console that this particular game was released for. Note that the data set contains multiple copies of the same game, released for different consoles." |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| rating       | "The ESRB rating for this game, either E (for Everyone), T (for Teen), or M (for Mature)."                                                                               |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| release_year | "The year that this game was released."                                                                                                                                  |
++--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
--   Continuous
+```{r exercise_01a, exercise=TRUE, exercise.setup="exercise_01setup"}
+video_games <- read.csv('video_games.csv')
 
--   Discrete
+# Use the `head()` function to view first 10 rows of `video_games`
+head(video_games, 10)
+```
 
-Categorical
+![The main types of statistical variables are: numerical - discrete, numerical - continuous, categorical - ordinal, and categorical - nominal](images/statistical_variables.png "Statistical Variables")
 
--   Nominal
+```{r exercise_01b, echo=FALSE}
+quiz(
+  caption = "Identify the variable type for each columns in `video_games`:",
+  question("What type of variable is `genre`?",
+    answer("Numerical: Continuous"),
+    answer("Numerical: Discrete"),
+    answer("Categorical: Nominal", correct = TRUE),
+    answer("Categorical: Ordinal"),
+    allow_retry = TRUE
+  ),
+  question("What type of variable is `review_score`?",
+    answer("Numerical: Continuous"),
+    answer("Numerical: Discrete", correct = TRUE),
+    answer("Categorical: Nominal"),
+    answer("Categorical: Ordinal"),
+    allow_retry = TRUE
+  ),
+  question("What type of variable is `sales`?",
+    answer("Numerical: Continuous", correct = TRUE),
+    answer("Numerical: Discrete"),
+    answer("Categorical: Nominal"),
+    answer("Categorical: Ordinal"),
+    allow_retry = TRUE
+  ),
+  question("What type of variable is `rating`?",
+    answer("Numerical: Continuous"),
+    answer("Numerical: Discrete"),
+    answer("Categorical: Nominal"),
+    answer("Categorical: Ordinal", correct = TRUE),
+    allow_retry = TRUE
+  )
+)
+```
 
--   Ordinal
+Other variables types: time
+
+## Describing Numerical Variables
+
+```{r exercise_02setup, include=FALSE}
+# Data from https://think.cs.vt.edu/corgis/csv/video_games/
+video_games <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/video_games.csv"))
+video_games <- as_tibble(video_games)
+video_games <- video_games %>% 
+  select(
+    Title, 
+    Features.Max.Players, 
+    Metadata.Genres, 
+    Metadata.Publishers, 
+    Metrics.Review.Score, 
+    Metrics.Sales, 
+    Release.Console, 
+    Release.Rating, 
+    Release.Year
+  ) %>%
+  rename(
+    game_title = Title, 
+    max_players = Features.Max.Players, 
+    genre = Metadata.Genres, 
+    publisher = Metadata.Publishers, 
+    review_score = Metrics.Review.Score, 
+    sales = Metrics.Sales, 
+    console = Release.Console,
+    rating = Release.Rating, 
+    release_year = Release.Year
+  )
+```
+
+```{r exercise_02a, exercise=TRUE, exercise.setup="exercise_02setup"}
+video_games <- read.csv('video_games.csv')
+
+# Use the `head()` function to view first 10 rows of `video_games`
+head(video_games, 10)
+```
+
+## Describing Categorical Variables
+
+## Describing Relationships Between Variables
+
+## Summary
+
+**Key Concepts**
+
+-   One of the main types of statistics is **descriptive statistics**, which is using statistics to describe data.
+
+-   The two main types of statistical variables are **numerical** and **categorical**.
+
+    -   The two types of numerical variables are **discrete** and **continuous**.
+
+    -   The two types of categorical variables are **ordinal** and **nominal**.
+
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Vocabulary                         | Definition                                                                                                                                                                                               |
++:===================================+:=========================================================================================================================================================================================================+
+| Statistics                         | Using math to make sense of data.                                                                                                                                                                        |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Descriptive Statistics             | Use statistics to describe data.                                                                                                                                                                         |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Variables (Statistics)             | Characteristics or attributes of an entity of interest. These are usually represented as columns within a data table. *Note: Avoid confusing this with variable/object concept in computer programming.* |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Numerical (Quantitative) Variable  | A variables that contains numbers.                                                                                                                                                                       |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Categorical (Qualitative) Variable | A variable that does not contain numbers (e.g. categories, text, etc).                                                                                                                                   |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Discrete Variable                  | A numerical variable that can only contain values separated by specific intervals.                                                                                                                       |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Continuous Variable                | A numerical variable that can contain values separated by any interval (not discrete).                                                                                                                   |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Ordinal Variable                   | A categorical variable that contains ordered values.                                                                                                                                                     |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Nominal Variable                   | A categorical variable that contains non-ordered values.                                                                                                                                                 |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                    |                                                                                                                                                                                                          |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**References**
+
+-   Bart, Austin C. *Video Games CSV File*. <https://think.cs.vt.edu/corgis/csv/video_games/>

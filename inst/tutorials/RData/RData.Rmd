@@ -477,7 +477,7 @@ Suppose now we want to find students who were "exceptional" throughout the cours
 
 -   Scored at least 0.8 on the post assessment
 
--   Attended at least 4 classes (*Hint: Lookup and apply the* `rowSums()` *function*)
+-   Attended at least 4 classes
 
 In addition, you'll need to apply a grade adjustment and add 0.1 to both assessments prior to selecting students based on this criteria.
 
