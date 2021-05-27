@@ -1,5 +1,5 @@
 ---
-title: "R for Statistics - Part 1: Descriptive Statistics"
+title: "(Under Construction) R for Statistics - Part 1: Descriptive Statistics"
 description: "Apply Descriptive Statistics with R."
 output: learnr::tutorial
 runtime: shiny_prerendered
@@ -49,34 +49,35 @@ All materials and topics in this course are subject to periodical changes and up
 Let's start by taking a look at a data set. If you are following along in the RStudio console, go ahead and download [this csv file](https://drive.google.com/uc?export=download&id=1YeBAn8geVfBL57WKo9ymGGxZ1QXXSqWj), and add it to a RStudio project folder. Run the code below to view the first few rows in this data set of video games.
 
 ```{r exercise_01setup, include=FALSE}
-# Data from https://think.cs.vt.edu/corgis/csv/video_games/
-video_games <- read.csv(url("https://raw.githubusercontent.com/UCSF-DSI/UCSFDSILearnr/main/data/video_games.csv"))
-video_games <- as_tibble(video_games)
-video_games <- video_games %>% 
-  select(
-    Title, 
-    Features.Max.Players, 
-    Metadata.Genres, 
-    Metadata.Publishers, 
-    Metrics.Review.Score, 
-    Metrics.Sales, 
-    Release.Console, 
-    Release.Rating, 
-    Release.Year
+# Data from https://think.cs.vt.edu/corgis/csv/billionaires/
+billionaires <- read.csv("https://think.cs.vt.edu/corgis/datasets/csv/billionaires/billionaires.csv")
+billionaires <- as_tibble(billionaires)
+billionaires <- billionaires %>% 
+  filter(
+    year == "2014"
   ) %>%
   rename(
-    game_title = Title, 
-    max_players = Features.Max.Players, 
-    genre = Metadata.Genres, 
-    publisher = Metadata.Publishers, 
-    review_score = Metrics.Review.Score, 
-    sales = Metrics.Sales, 
-    console = Release.Console,
-    rating = Release.Rating, 
-    release_year = Release.Year
-  )
+    name = name, 
+    company_founded = company.founded, 
+    company_sector = company.sector, 
+    age = demographics.age, 
+    gender = demographics.gender, 
+    citizenship_country = location.citizenship,
+    net_worth = wealth.worth.in.billions, 
+    inheritance_source = wealth.how.inherited
+  ) %>%
+  select(
+    name, 
+    company_founded, 
+    company_sector, 
+    age, 
+    gender, 
+    citizenship_country, 
+    net_worth, 
+    inheritance_source
+  ) 
 
-write.csv(video_games, "video_games.csv", row.names=FALSE)
+write.csv(billionaires, "billionaires.csv", row.names=FALSE)
 rm(list=ls())
 ```
 
