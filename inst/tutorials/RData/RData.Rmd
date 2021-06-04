@@ -609,20 +609,12 @@ top_performers
 -   For 2-dimensional data, use **matrices** if all the values are the same type and **data frames** if the values are different types.
 -   Use square brackets (`[ ]`) to **index** data in vectors, matrices, and data frames.
 
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Vocabulary                   | Definition                                                                                       |
-+==============================+==================================================================================================+
+|------------------------------|--------------------------------------------------------------------------------------------------|
 | RStudio Projects             | A RStudio feature to organize all files and settings associated with each project.               |
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Files Pane                   | A pane on the bottom right of RStudio that displays your files and directories.                  |
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Vector                       | A sequence of values.                                                                            |
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Index                        | Select specific values within a vector, matrix, or dataframe.                                    |
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Length                       | The number of values in a vector. It also refers to the number of rows in a matrix or dataframe. |
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Comma Separated Values (CSV) | A file format that stores multiple values by separating them with commas.                        |
-+------------------------------+--------------------------------------------------------------------------------------------------+
 | Tabular Data                 | Data that can be displayed in a table (rows and columns)                                         |
-+------------------------------+--------------------------------------------------------------------------------------------------+
