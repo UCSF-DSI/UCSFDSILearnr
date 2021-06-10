@@ -103,35 +103,35 @@ The first thing you'll learn to describe in this data are its variables. **Stati
 
 In this data, the entity of interest (represented as each row) is billionaires, and the table below lists the variables associated with billionaires.
 
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Column              | Description (Taken from [CORGIS](https://think.cs.vt.edu/corgis/csv/billionaires/))                                                                                            |
-+:====================+:===============================================================================================================================================================================+
-| name                | "The name of the billionaire."                                                                                                                                                 |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| company_founded     | "The year that the company was founded."                                                                                                                                       |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| company_sector      | "The sector of the business, or what segment of the economy they fit into."                                                                                                    |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| age                 | "The current age of the billionaire. Ages that are represented as -1 stand for ages that were not available in the data that was collected."                                   |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| gender              | "A string representing their gender."                                                                                                                                          |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| citizenship_country | "The name of the country that this billionaire has citizenship with."                                                                                                          |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| net_worth           | "The number of billion of dollars that this billionaire is worth."                                                                                                             |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| inheritance_source  | "The way that this money was inherited (or not inherited). Inheritance can come from a spouse, the father, or from multiple generations within a family (either 3, 4, or 5+)." |
-+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Column                  | Description (Taken from [CORGIS](https://think.cs.vt.edu/corgis/csv/billionaires/))                                                                                            |
++:========================+:===============================================================================================================================================================================+
+| name                    | "The name of the billionaire."                                                                                                                                                 |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| company_founded         | "The year that the company was founded."                                                                                                                                       |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| company_sector          | "The sector of the business, or what segment of the economy they fit into."                                                                                                    |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| age                     | "The current age of the billionaire. Ages that are represented as -1 stand for ages that were not available in the data that was collected."                                   |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| gender                  | "A string representing their gender."                                                                                                                                          |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| citizenship_country     | "The name of the country that this billionaire has citizenship with."                                                                                                          |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| net_worth               | "The number of billion of dollars that this billionaire is worth."                                                                                                             |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| inheritance_source      | "The way that this money was inherited (or not inherited). Inheritance can come from a spouse, the father, or from multiple generations within a family (either 3, 4, or 5+)." |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 There are two main types of statistical variables: numerical and categorical.
 
-**Numerical variables** are variables that contains numbers. There are two subtypes of numerical variables: continuous and discrete. **Continuous variables** are variables where there can be an infinite number of values between any two values. Usually, variables that contain decimal numbers are continuous variables. **Discrete variables** are variables where values are separated by specific intervals. Integers are a common example of discrete variables.
+**Numerical variables** are variables that contains numbers. There are two subtypes of numerical variables: continuous and discrete. **Continuous variables** are variables where there can be an infinite number of values between any two values. Usually, variables that contain decimal numbers are continuous variables. **Discrete variables** are variables where values are separated by specific intervals. Any integer-based variables is an example of discrete variables.
 
 **Categorical Variables** are variables that do not contain numbers. The two types of categorical variables are ordinal and nominal. **Ordinal variables** contain categories that are ordered. A common example of an ordinal variable are Likert scales and other types of ratings. **Nominal variables** contain categories that are not ordered.
 
 Below is a summary of the types of statistical variables:
 
-![The main types of statistical variables are: numerical - discrete, numerical - continuous, categorical - ordinal, and categorical - nominal](images/statistical_variables.png "Statistical Variables")
+![The main types of statistical variables are: numerical - discrete, numerical - continuous, categorical - ordinal, and categorical - nominal](images/statistical_variables.png "Statistical Variables"){width="100%"}
 
 It's important to identify the type of variables you are working with because it provides a framework to determine the type of analysis you can apply to the variable. In the next few lessons, you'll learn about different ways of applying descriptive statistics, and the types of analysis you can apply to a numerical variable are different than your options for a categorical variable.
 
@@ -139,7 +139,7 @@ It's important to identify the type of variables you are working with because it
 
 ```{r exercise_01b, echo=FALSE}
 quiz(
-  caption = "Identify the variable type for each columns in `video_games`:",
+  caption = "Identify the variable type for the following columns in `billionaires`:",
   question("What type of variable is `citizenship_country`?",
     answer("Numerical: Continuous"),
     answer("Numerical: Discrete"),
@@ -171,9 +171,25 @@ quiz(
 )
 ```
 
-Other variables types: time
+***Food for thought***: Let's think about the *age* variable for a minute. Although there are decimals, all the values are rounded to one decimal point. Doesn't that mean that the values can only occur at specific intervals, which makes *age* discrete? There is a little gray area, and you do have to exercise judgement in determine which variable type makes the most sense in these types of scenarios. In the later lessons, you'll learn about the types of analyses you can apply to each variable type which will help you determine how to make that judgement.
+
+### Other Variable Types
+
+In addition to the types of variables above, there are a few special subtypes of numeric and categorical variables you should be aware of:
+
+-   **Time series** is a type of continuous (numeric) variable based on time.
+
+-   **Raw text** is a type of categorical variable based on free-form text entry. **Natural Language Processing (NLP)** is an entire field focused on the processing and analysis of raw text and natural language. Although this module will not discuss NLP, you should be aware that there are analysis techniques available to handle this type of variable.
 
 ## Describing Numerical Variables
+
+In this lesson, we will describe three ways to describe numerical variables:
+
+-   Visualizations
+
+-   Measures of Center
+
+-   Measures of Spread
 
 ```{r exercise_02setup, include=FALSE}
 # Data from https://think.cs.vt.edu/corgis/csv/billionaires/
@@ -202,12 +218,22 @@ billionaires <- billionaires %>%
     net_worth, 
     inheritance_source
   ) 
+
 ```
+
+### Visualizations
+
+Visualizations can be used to describe the values that can appear in numeric variables. For continuous variables, we can use histograms, and for discrete variables, we can use bar charts.
+
+#### Histograms
+
+**Histograms** display continuous variables by representing the frequency of ranges of values as bars. Run the code below to display a histogram of *net_worth* variable.
 
 ```{r exercise_02a, exercise=TRUE, exercise.setup="exercise_02setup"}
 # Create a histogram of the net_worth variable with 30 bins and assign it to net_worth_hist
-net_worth_hist <- ggplot(billionaires, aes(x= net_worth)) + 
-  geom_histogramaes(net_worth), bins = 30) +
+net_worth_hist <- ggplot(billionaires) + 
+  aes(x= net_worth) + 
+  geom_histogram(bins = 30) +
   ggtitle("Histogram of Billionaire Net Worths") +
   xlab("Net Worth (Billions)") + 
   ylab("Count")
@@ -216,14 +242,88 @@ net_worth_hist <- ggplot(billionaires, aes(x= net_worth)) +
 net_worth_hist
 ```
 
+From the histogram, we can see that most of the net worth values are below 10 billion. Let's break down how this code works.
+
+We are using the *ggplot2* library, which is based on the grammar of graphics. The **grammar of graphics** is a way to describe visualizations. We won't dive too deep into the grammar of graphics in this module, but you will learn more about it in the R for Visualizations series (coming soon)!
+
+The first step to create your histogram is to initiate a new ggplot using the `ggplot` function. In the code sample below, we are initiating a ggplot for the data in our *billionaires* dataframe and assigning it to an object called *net_worth_hist*.
+
+```{r exercise_02a_1, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Initiate a new ggplot based on billionaires and assign to net_worth_hist
+net_worth_hist <- ggplot(billionaires)
+
+# Display net_worth_hist
+net_worth_hist
+```
+
+Right now, *net_worth_hist* is just an empty plot because we haven't added anything to it yet. The first thing we'll add to *net_worth_hist* is an aesthetic mapping. An **aesthetic mapping** maps variables from your data to visual properties of your plot. In this case, we want our x-axis to represent the *net_worth* variable from *billionaires*, and we'll use the `aes` function to accomplish that.
+
+```{r exercise_02a_2, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Initiate a new ggplot based on billionaires and assign to net_worth_hist
+net_worth_hist <- ggplot(billionaires) +
+  aes(x = net_worth) # map net_worth to the x axis
+
+# Display net_worth_hist
+net_worth_hist
+```
+
+Now we can see net_worth in the x-axis, but we still need to plot our data. We'll do this by adding a geometry. Think of **geometries** as layers of drawings. The first geometry we'll add is `geom_histogram` which will create a histogram.
+
+```{r exercise_02a_3, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Initiate a new ggplot based on billionaires and assign to net_worth_hist
+net_worth_hist <- ggplot(billionaires) +
+  aes(x = net_worth) + # map net_worth to the x axis
+  geom_histogram(bins = 30) # create a histogram with 30 bins
+
+# Display net_worth_hist
+net_worth_hist
+```
+
+From this point, we can add a title and adjust axes labels using `ggtitle`, `xlab`, and `ylab`.
+
+```{r exercise_02a_4, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Create a histogram of the net_worth variable with 30 bins and assign it to net_worth_hist
+net_worth_hist <- ggplot(billionaires) + 
+  aes(x= net_worth) +
+  geom_histogram(bins = 30) +
+  ggtitle("Histogram of Billionaire Net Worths") +
+  xlab("Net Worth (Billions)") + 
+  ylab("Count")
+
+# Display net_worth_hist
+net_worth_hist
+```
+
+In summary, to create ggplots, you'll need to first initialize it, and then you'll add layers based on what you need to visualize.
+
+##### Knowledge Check
+
+Using what you learned, create a histogram of the age variable. We went ahead and filtered the *age* variable because there are missing values (age == -1). Make sure to use *billionaires_with_age* instead of *billionaires* for this ggplot. For the histogram, let's use 20 bins for now.
+
 ```{r exercise_02b, exercise=TRUE, exercise.setup="exercise_02setup"}
-# Filter the billionaires to only include data that provided age (hint: what does age == -1 mean?). Assign the results to billionaires_with_age
+# Filter the billionaires to only include data that provided age
 billionaires_with_age <- billionaires %>%
   filter(age > 0)
 
-# Create a histogram of the age variable with 30 bins and assign it to age_hist
-age_hist <- ggplot(billionaires_with_age, aes(x = age)) + 
-  geom_histogram(bins = 30)
+# Create a histogram of the age variable with 20 bins and assign it to age_hist
+
+
+# Add a title and axis labels to age_hist
+
+
+# Display age_hist
+
+```
+
+```{r exercise_02b-solution}
+# Filter the billionaires to only include data that provided age
+billionaires_with_age <- billionaires %>%
+  filter(age > 0)
+
+# Create a histogram of the age variable with 20 bins and assign it to age_hist
+age_hist <- ggplot(billionaires_with_age) + 
+  aes(x = age) +
+  geom_histogram(bins = 20)
 
 # Add a title and axis labels to age_hist
 age_hist <- age_hist +
@@ -231,22 +331,17 @@ age_hist <- age_hist +
   xlab("Age") + 
   ylab("Count")
 
-# Add a vertical line where the mean of age is
-age_hist <- age_hist +
-  geom_vline(xintercept = mean(pull(billionaires_with_age, age)), color = "red")
-
-# Add a vertical line where the median of age is
-age_hist <- age_hist +
-  geom_vline(xintercept = median(pull(billionaires_with_age, age)), color = "blue")
-
-# Annotate the plot
-age_hist <- age_hist + 
-  annotate(geom = "text", label = "The mean is 63.34214", color = "red", x = 75, y = 140) + 
-  annotate(geom = "text", label = "The median is 63", color = "blue", x = 50, y = 140) +
-  annotate(geom = "text", label = "The data is symmetric.", x = 30, y = 125)
-
 # Display age_hist
 age_hist
+```
+
+#### Bar Chart
+
+### Measures of Center
+
+### Measures of Spread
+
+```{}
 ```
 
 ```{r exercise_02c, exercise=TRUE, exercise.setup="exercise_02setup"}
@@ -303,6 +398,12 @@ age_bar
 | Ordinal Variable                   | A categorical variable that contains ordered values.                                                                                                                                                     |
 +------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Nominal Variable                   | A categorical variable that contains non-ordered values.                                                                                                                                                 |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Time Series                        | A type of continuous (numeric) variable based on time.                                                                                                                                                   |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Raw Text                           | A type of categorical variable based on free-form text entry.                                                                                                                                            |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Natural Language Processing (NLP)  | A field focused on the processing and analysis of raw text and natural language.                                                                                                                         |
 +------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Histogram                          | A visualization that displays the shape of data by representing the frequency of ranges of values as bars.                                                                                               |
 +------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

@@ -1,6 +1,7 @@
 ---
 title: "Access Instructions"
-output: html_notebook
+output:
+  html_notebook
 ---
 
 You'll need to have R and RStudio installed, and you'll access the self-paced R for Everyone modules directly inside of RStudio!
@@ -47,11 +48,8 @@ Now that the courses have been installed, you can access them in the Tutorial Pa
 
 The courses in this series are:
 
--   R for Everyone - Part 1: The Basics
-
--   R for Everyone - Part 2: Computer Programming
-
--   R for Everyone - Part 3: Data
+-   R for Statistics - Part 1: Descriptive Statistics
+-   R for Statistics - Part 2: Inferential Statistics
 
 Begin a course by clicking *Start Tutorial*. We recommend viewing the course in a new window, and to do that, you'll just need to click the *Show in new window* icon at the top left of the Tutorial Pane.
 
