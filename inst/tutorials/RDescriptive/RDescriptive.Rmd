@@ -103,25 +103,25 @@ The first thing you'll learn to describe in this data are its variables. **Stati
 
 In this data, the entity of interest (represented as each row) is billionaires, and the table below lists the variables associated with billionaires.
 
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Column                  | Description (Taken from [CORGIS](https://think.cs.vt.edu/corgis/csv/billionaires/))                                                                                            |
-+:========================+:===============================================================================================================================================================================+
-| name                    | "The name of the billionaire."                                                                                                                                                 |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| company_founded         | "The year that the company was founded."                                                                                                                                       |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| company_sector          | "The sector of the business, or what segment of the economy they fit into."                                                                                                    |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| age                     | "The current age of the billionaire. Ages that are represented as -1 stand for ages that were not available in the data that was collected."                                   |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| gender                  | "A string representing their gender."                                                                                                                                          |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| citizenship_country     | "The name of the country that this billionaire has citizenship with."                                                                                                          |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| net_worth               | "The number of billion of dollars that this billionaire is worth."                                                                                                             |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| inheritance_source      | "The way that this money was inherited (or not inherited). Inheritance can come from a spouse, the father, or from multiple generations within a family (either 3, 4, or 5+)." |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Column              | Description (Taken from [CORGIS](https://think.cs.vt.edu/corgis/csv/billionaires/))                                                                                            |
++:====================+:===============================================================================================================================================================================+
+| name                | "The name of the billionaire."                                                                                                                                                 |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| company_founded     | "The year that the company was founded."                                                                                                                                       |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| company_sector      | "The sector of the business, or what segment of the economy they fit into."                                                                                                    |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| age                 | "The current age of the billionaire. Ages that are represented as -1 stand for ages that were not available in the data that was collected."                                   |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| gender              | "A string representing their gender."                                                                                                                                          |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| citizenship_country | "The name of the country that this billionaire has citizenship with."                                                                                                          |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| net_worth           | "The number of billion of dollars that this billionaire is worth."                                                                                                             |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| inheritance_source  | "The way that this money was inherited (or not inherited). Inheritance can come from a spouse, the father, or from multiple generations within a family (either 3, 4, or 5+)." |
++---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 There are two main types of statistical variables: numerical and categorical.
 
@@ -171,7 +171,7 @@ quiz(
 )
 ```
 
-***Food for thought***: Let's think about the *age* variable for a minute. Although there are decimals, all the values are rounded to one decimal point. Doesn't that mean that the values can only occur at specific intervals, which makes *age* discrete? There is a little gray area, and you do have to exercise judgement in determine which variable type makes the most sense in these types of scenarios. In the later lessons, you'll learn about the types of analyses you can apply to each variable type which will help you determine how to make that judgement.
+***Food for thought***: What if the *net_worth* variable is actually discrete? After all, it consists of rounded values which only occur at 0.1 intervals. This is a gray area, and you can choose *net_worth*'s variable type based on the analyses you want to try. In later lessons, you'll learn to choose the variable type based on the available types of analyses.
 
 ### Other Variable Types
 
@@ -180,6 +180,8 @@ In addition to the types of variables above, there are a few special subtypes of
 -   **Time series** is a type of continuous (numeric) variable based on time.
 
 -   **Raw text** is a type of categorical variable based on free-form text entry. **Natural Language Processing (NLP)** is an entire field focused on the processing and analysis of raw text and natural language. Although this module will not discuss NLP, you should be aware that there are analysis techniques available to handle this type of variable.
+
+-   **Image data** consists of discrete (numeric) variables representing the color of each pixel. **Computer Vision** is an entire field focused on analyzing and interpreting image data. Similar to NLP, Computer Vision will not be discussed in this module, but you should be aware that analysis techniques exist for image data as well.
 
 ## Describing Numerical Variables
 
@@ -193,7 +195,7 @@ In this lesson, we will describe three ways to describe numerical variables:
 
 ```{r exercise_02setup, include=FALSE}
 # Data from https://think.cs.vt.edu/corgis/csv/billionaires/
-billionaires <- read_csv("https://think.cs.vt.edu/corgis/datasets/csv/billionaires/billionaires.csv")
+billionaires <- read_csv("https://think.cs.vt.edu/corgis/datasets/csv/billionaires/billionaires.csv", col_types = cols())
 billionaires <- billionaires %>% 
   filter(
     year == "2014"
@@ -294,11 +296,11 @@ net_worth_hist <- ggplot(billionaires) +
 net_worth_hist
 ```
 
-In summary, to create ggplots, you'll need to first initialize it, and then you'll add layers based on what you need to visualize.
+In summary, to create ggplots, you'll need to first initialize it, and then you'll add layers to your plot based on what you need to visualize.
 
 ##### Knowledge Check
 
-Using what you learned, create a histogram of the age variable. We went ahead and filtered the *age* variable because there are missing values (age == -1). Make sure to use *billionaires_with_age* instead of *billionaires* for this ggplot. For the histogram, let's use 20 bins for now.
+Using what you learned, create a histogram of the *age* variable. We went ahead and filtered the *age* variable because there are missing values (age == -1). Make sure to use *billionaires_with_age* instead of *billionaires* for this ggplot. For the histogram, let's use 20 bins for now.
 
 ```{r exercise_02b, exercise=TRUE, exercise.setup="exercise_02setup"}
 # Filter the billionaires to only include data that provided age
@@ -337,12 +339,9 @@ age_hist
 
 #### Bar Chart
 
-### Measures of Center
+**Bar Charts** are similar to histograms, but instead of displaying frequencies of ranges of values, bar charts display frequencies for specific values. You should use Bar Charts when working with discrete variables.
 
-### Measures of Spread
-
-```{}
-```
+Similar to histograms, bar charts can also be created with *ggplot*. The main difference is you'll use `geom_bar()` instead of `geom_histogram()`.
 
 ```{r exercise_02c, exercise=TRUE, exercise.setup="exercise_02setup"}
 # Filter the billionaires to only include data that provided age (hint: what does age == -1 mean?). Assign the results to billionaires_with_age
@@ -350,7 +349,8 @@ billionaires_with_age <- billionaires %>%
   filter(age > 0)
 
 # Create a bar plot of the age variable with a bar width of 0.8 and assign it to age_bar
-age_bar <- ggplot(billionaires_with_age, aes(x = age)) + 
+age_bar <- ggplot(billionaires_with_age) + 
+  aes(x = age) +
   geom_bar(width = 0.8) + 
   ggtitle("Bar Plot of Billionaire Ages") +
   xlab("Age") + 
@@ -359,6 +359,120 @@ age_bar <- ggplot(billionaires_with_age, aes(x = age)) +
 # Display age_bar
 age_bar
 ```
+
+##### Knowledge Check
+
+Using what you learned, create a histogram of the *company_founded* variable. Before you create your plot, filter *billionaires* to only include those who founded companies after year 1500 (company_founded \> 1500). Assign the filtered data to an object called *billionaires_more_recent*, and make sure to use *billionaires_more_recent* instead of *billionaires* for this ggplot.
+
+```{r exercise_02c_1, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Filter the billionaires to only include data company_founded > 1500
+
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+
+
+# Display company_founded_bar
+
+```
+
+```{r exercise_02c_1-solution}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display company_founded_bar
+company_founded_bar
+```
+
+There were billionaires who founded companies between 1600 and 1800?! That seems fishy 🤨 Let's take a closer look at theses billionaires.
+
+```{r exercise_02c_2, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Filter billionaires to only display net_worth between 1600 and 1800.
+old_billionaires <- billionaires %>%
+  filter(company_founded > 1600) %>%
+  filter(company_founded < 1800) %>%
+  select(company_founded, name, inheritance_source)
+
+old_billionaires
+```
+
+It looks like some of the billionaires inherited their wealth. That makes more sense!
+
+As you see in this example, visualizations can reveal important questions that help you gain a better understanding of the data.
+
+### Measures of Center
+
+As the name implies, **measures of center** are ways to describe the "center" value of a variable. They are important because they also serve as a proxy to represent the expected or typical value of a variable. The three measures of center you'll learn about in this lesson are:
+
+-   **Mean**: Also known as average, the mean is the sum of all values divided by the number of values. You can calculate mean using the `mean()` function. Mean can be used with both continuous and discrete data.
+
+-   **Median**: The median is the value that separates the top and bottom halves of the data. You can calculate median using the `median()` function. Median can be used with both continuous and discrete data.
+
+Let's see what these look like in our histogram of *company_founded* (*company_founded_bar*). Let's start with the mean.
+
+```{r exercise_02d_1, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display mean of company_founded
+company_founded_bar <- company_founded_bar + 
+  geom_vline(xintercept = mean(billionaires_more_recent$company_founded), color = "red")
+
+# Display company_founded_bar
+company_founded_bar
+
+# Print mean of net_worth
+print(sprintf("The mean is %s", mean(billionaires_more_recent$company_founded)))
+```
+
+Here we used `geom_vline()` to create a red vertical line at the mean. Now let's create a blue line to represent the median.
+
+```{r exercise_02d_2, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display mean of company_founded
+company_founded_bar <- company_founded_bar + 
+  geom_vline(xintercept = mean(billionaires_more_recent$company_founded), color = "red") + 
+  geom_vline(xintercept = median(billionaires_more_recent$company_founded), color = "blue")
+
+# Display company_founded_bar
+company_founded_bar
+
+# Print mean of net_worth
+print(sprintf("The mean is %s", mean(billionaires_more_recent$company_founded)))
+print(sprintf("The median is %s", median(billionaires_more_recent$company_founded)))
+```
+
+In this scenario, the mean is lower than the median. That's because there are extreme low values. When extreme low values are shifting the mean lower, the data is **negatively skewed**. Similarly, when extreme high values are shifting the mean higher, the data is **positively skewed**. Whenever you have skewness, you should consider using median as your main measure of center because it is not effected by extreme values.
+
+### Measures of Spread
 
 ## Describing Categorical Variables
 
