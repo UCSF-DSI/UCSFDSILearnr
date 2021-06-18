@@ -650,7 +650,7 @@ To choose between analyses options, ask yourself two questions:
 
 Based on the answers to these two questions, you can choose the appropriate analysis by using the flowchart below.
 
-![Choose analysis options based on the interval between values and skewness.](images/numerical_analyses.png "Analysis Options for Numerical Variables")
+![Choose analysis options based on the interval between values and skewness.](images/numerical_analyses.png "Analysis Options for Numerical Variables"){width="100%"}
 
 ## Describing Categorical Variables
 
