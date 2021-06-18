@@ -410,7 +410,7 @@ As you see in this example, visualizations can reveal important questions that h
 
 ### Measures of Center
 
-As the name implies, **measures of center** are ways to describe the "center" value of a variable. They are important because they also serve as a proxy to represent the expected or typical value of a variable. The three measures of center you'll learn about in this lesson are:
+As the name implies, **measures of center** are ways to describe the "center" value of a variable. They are important because they also serve as a proxy to represent the expected or typical value of a variable. The two measures of center you'll learn about in this lesson are:
 
 -   **Mean**: Also known as average, the mean is the sum of all values divided by the number of values. You can calculate mean using the `mean()` function. Mean can be used with both continuous and discrete data.
 
