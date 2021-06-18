@@ -171,7 +171,7 @@ quiz(
 )
 ```
 
-***Food for thought***: What if the *net_worth* variable is actually discrete? After all, it consists of rounded values which only occur at 0.1 intervals. This is a gray area, and you can choose *net_worth*'s variable type based on the analyses you want to try. In later lessons, you'll learn to choose the variable type based on the available types of analyses.
+***Food for thought***: What if the *net_worth* variable is actually discrete? After all, it consists of rounded values which only occur at 0.1 intervals. This is a gray area, and you can choose *net_worth*'s variable type based on the analyses you want to try. As a guideline, the smaller the interval between possible values, the more appropriate it is to frame a variable as continuous rather than discrete.
 
 ### Other Variable Types
 
@@ -470,9 +470,187 @@ print(sprintf("The mean is %s", mean(billionaires_more_recent$company_founded)))
 print(sprintf("The median is %s", median(billionaires_more_recent$company_founded)))
 ```
 
-In this scenario, the mean is lower than the median. That's because there are extreme low values. When extreme low values are shifting the mean lower, the data is **negatively skewed**. Similarly, when extreme high values are shifting the mean higher, the data is **positively skewed**. Whenever you have skewness, you should consider using median as your main measure of center because it is not effected by extreme values.
+In this scenario, the mean is less than than the median. That's because there are extreme low values. When extreme low values are shifting the mean lower, the data is **negatively skewed**. Similarly, when extreme high values are shifting the mean higher, the data is **positively skewed**. Whenever you have skewness, you should consider using median as your main measure of center because it is not effected by extreme values.
 
 ### Measures of Spread
+
+While measures of center describe the typical value of a variable, **measures of spread** describe the typical range of values. The measures of spread this lesson are:
+
+-   **Range**: The difference between the maximum and minimum values. Range can be used for both discrete and continuous variables.
+
+-   **Interquartile Range (IQR)**: The difference between the 75th and 25th percentile. IQR can be used for both discrete and continuous variables.
+
+-   **Standard Deviation**: The square root of the mean squared differences of each value from the mean. Standard Deviation can be used for continuous variables, and it can also be used for discrete variables when the interval between possible values is small.
+
+These definitions might not make a lot of sense at the moment (especially standard deviation), but let's take a closer look.
+
+#### Range and Interquartile Range (IQR)
+
+Range is the difference between the maximum and minimum values, and you can calculate range using the `max()` and `min()` functions.
+
+```{r exercise_02e, exercise=TRUE, exercise.setup="exercise_02setup"}
+print(sprintf("The maximum is %s", max(billionaires$net_worth)))
+print(sprintf("The minimum is %s", min(billionaires$net_worth)))
+print(sprintf("The range is %s", max(billionaires$net_worth) - min(billionaires$net_worth)))
+```
+
+Although range is a useful measure of spread that is easy to explain, similar to mean, it become less useful when there are extreme values. One alternative to range in interquartile range (IQR).
+
+To understand IQR, you first need to understand percentiles. **Percentiles** are values that divide the data at a specific percentage. A few examples below:
+
+-   The 75th percentile is less than than 75 percent of the values.
+
+-   The median is also known as the 50th percentile, and it is greater than than 50 percent of the values.
+
+Percentiles can be calculated using the `quantile()` function. IQR is the difference between the 75th percentile and the 25th percentile, and it can be calculated using the `IQR()`function.
+
+```{r exercise_02e1, exercise=TRUE, exercise.setup="exercise_02setup"}
+print(sprintf("The 75th percentile is %s", quantile(billionaires$net_worth, 0.75)))
+print(sprintf("The 25th percentile is %s", quantile(billionaires$net_worth, 0.25)))
+print(sprintf("The IQR is %s", IQR(billionaires$net_worth)))
+```
+
+##### Knowledge Check
+
+Using what you learn, modify the code below to add vertical lines to *company_founded_bar* to represent the median (red) and IQR boundaries (green).
+
+```{r exercise_02f_2, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display the median (red), and IQR boundaries (green) of company_founded
+# YOUR WORK HERE
+
+# Display company_founded_bar
+company_founded_bar
+```
+
+```{r exercise_02f_2-solution}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display the median (red), and IQR boundaries (green) of company_founded
+company_founded_bar <- company_founded_bar + 
+  geom_vline(xintercept = median(billionaires_more_recent$company_founded), color = "red") + 
+  geom_vline(xintercept = quantile(billionaires$company_founded, 0.75), color = "green") + 
+  geom_vline(xintercept = quantile(billionaires$company_founded, 0.25), color = "green")
+
+# Display company_founded_bar
+company_founded_bar
+```
+
+#### Standard Deviation
+
+Standard Deviation is the square root of the mean squared differences of each value from the mean. Let's see how this is calculated.
+
+```{r exercise_02f, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Calculate difference between each value and the mean
+differences <- billionaires$net_worth - mean(billionaires$net_worth)
+
+# Square the differences
+squared_differences <- differences ** 2
+
+# Take the mean of the differences
+mean_squared_differences <- mean(squared_differences)
+
+# Calculate the square root of mean squared differences
+standard_deviation <- sqrt(mean_squared_differences)
+```
+
+Standard deviation can also be calculated directly using the `sd()` function.
+
+```{r exercise_02f1, exercise=TRUE, exercise.setup="exercise_02setup"}
+print(sprintf("The standard deviation is %s", sd(billionaires$net_worth)))
+```
+
+##### Knowledge Check
+
+Using what you learn, modify the code below to add vertical lines to *company_founded_bar* to represent the mean (red) and +/- 1 standard deviation from the mean (green).
+
+```{r exercise_02f_3, exercise=TRUE, exercise.setup="exercise_02setup"}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display the mean (red), and +/- 1 standard deviation (green) of company_founded
+# YOUR WORK HERE
+
+# Display company_founded_bar
+company_founded_bar
+```
+
+```{r exercise_02f_3-solution}
+# Filter the billionaires to only include data company_founded > 1500
+billionaires_more_recent <- billionaires %>%
+  filter(company_founded > 1500)
+
+# Create a bar plot of the company_founded variable and assign it to company_founded_bar
+company_founded_bar <- ggplot(billionaires_more_recent) + 
+  aes(x = company_founded) +
+  geom_bar(width = 0.8) + 
+  ggtitle("Bar Plot of company_founded") +
+  xlab("Year Company Founded") + 
+  ylab("Count")
+
+# Display the mean (red), and +/- 1 standard deviation (green) of company_founded
+company_founded_bar <- company_founded_bar + 
+  geom_vline(xintercept = mean(billionaires_more_recent$company_founded), color = "red") + 
+  geom_vline(xintercept = mean(billionaires_more_recent$company_founded) + sd(billionaires_more_recent$company_founded), color = "green") + 
+  geom_vline(xintercept = mean(billionaires_more_recent$company_founded) - sd(billionaires_more_recent$company_founded), color = "green")
+
+# Display company_founded_bar
+company_founded_bar
+```
+
+#### Choosing Analyses for Numerical Variables
+
+Let's summarize some of the analyses we've learned in this lesson:
+
++----------------+--------------------+---------------------------+
+| Visualizations | Measures of Center | Measures of Spread        |
++================+====================+===========================+
+| Histogram      | Mean               | Range                     |
+|                |                    |                           |
+| Bar Chart      | Median             | Interquartile Range (IQR) |
+|                |                    |                           |
+|                |                    | Standard Deviation        |
++----------------+--------------------+---------------------------+
+
+To choose between analyses options, ask yourself two questions:
+
+1.  Is the interval between possible values large?
+
+2.  Is the data skewed?
+
+Based on the answers to these two questions, you can choose the appropriate analysis by using the flowchart below.
+
+![Choose analysis options based on the interval between values and skewness.](images/numerical_analyses.png "Analysis Options for Numerical Variables")
 
 ## Describing Categorical Variables
 
